@@ -437,31 +437,4 @@ namespace CalcPriceOfFlat
         }
 
     }
-    public class Flats:Flat
-    {
-        public Flats(string LocationFlat, byte NumbersOfRoom, string MarketSegment,
-            ushort NumberOfStoreys, string WallMaterial, ushort FloorLocation,
-            double ApartmentArea, ushort KitchentArea, bool balcony,
-            ushort DistanseFromMetroStation, uint Price, string repair) 
-
-            :base( LocationFlat,  NumbersOfRoom,  MarketSegment,
-             NumberOfStoreys,  WallMaterial,  FloorLocation,
-             ApartmentArea,  KitchentArea,  balcony,
-             DistanseFromMetroStation, repair)
-        {
-
-            this.Price = Price;
-
-        }
-
-      
-
-        public double Price { get; set; } = 0;                        //цена
-
-        public float weightprocent = 0;
-        public float weightanalog= 0;
-        /*цены квартиры рассчитывается и возвращается методом. Поле - "цена квартиры" использовать 
-         * нецелесообразно из-за размера переменной, которая при этом будет использоваться*/
-
-    }
 }

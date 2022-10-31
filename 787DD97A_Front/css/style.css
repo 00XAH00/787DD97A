@@ -219,3 +219,11 @@ body{
   color: #fff;
   transition: all .2s;
 }
+
+.form__box{
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  padding-bottom: 100px;
+  /* margin-bottom: 100px; */
+}

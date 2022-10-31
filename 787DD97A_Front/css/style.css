@@ -185,14 +185,14 @@ body{
   width: 100%;
 }
 
-.form__box-inner label,
 .form__box-inner input{
   /* display: block; */
   width: 100%;
 }
 
-.form__box-inner label{
-  line-height: 36px;
+.form__box-inner label,
+.form__box-inner p{
+  line-height: 40px;
   color: #282828;
 }
 

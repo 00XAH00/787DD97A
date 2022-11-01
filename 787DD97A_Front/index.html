@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:400,700&display=swap&subset=cyrillic" rel="stylesheet"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/nouislider.min.css">
     <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
@@ -43,7 +44,7 @@
                       <div class="form__box-left">
                         <div class="form__location">
                           <label for="location">Местоположение</label>
-                          <input id="location" type="text" placeholder="Гагаринский">
+                          <input class="form__input" id="location" type="text" placeholder="Гагаринский">
                         </div>
                         <div class="form__segment">
                           <p>Сегмент</p>
@@ -53,7 +54,7 @@
                         </div>
                         <div class="form__distance">
                           <label for="distance">Расстояние до метро(минуты)</label>
-                          <input id="distance" type="text" placeholder="5 минут">
+                          <input class="form__input" id="distance" type="text" placeholder="5 минут">
                         </div>
                         <div class="form__finishing">
                           <p>Состояние отделки</p>
@@ -63,7 +64,7 @@
                         </div>
                         <div class="form__floor">
                           <label for="floor">Нужный этаж</label>
-                          <input id="floor" type="text" min="0" max="100" placeholder="1">
+                          <input class="form__input" id="floor" type="text" min="0" max="100" placeholder="1">
                         </div>
                         <div class="form__walls">
                           <p>Материал стен дома</p>
@@ -71,8 +72,52 @@
                           <button class="form__box-btn">Монолит</button>
                           <button class="form__box-btn">Панель</button>
                         </div>
+                        <h3 class="slider__title">Площадь квартиры</h3>
+                        <div class="slider__inputs">
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    от
+                                </span>
+                                <input class="slider__input" min="10" max="1000" placeholder="10" type="number" id="input-0">
+                                <span class="slider__text">
+                                    м²
+                                </span>            
+                            </label>
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    до
+                                </span>
+                                <input class="slider__input" min="10" max="1000" placeholder="1000" type="number" id="input-1">
+                                <span class="slider__text">
+                                    м²
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form__range-slider" id="range-slider"></div>
+                        
+                        <h3 class="slider__title">Площадь кухни</h3>
+                        <div class="slider__inputs">
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    от
+                                </span>
+                                <input class="slider__input" min="10" max="1000" placeholder="10" type="number">
+                                <span class="slider__text">
+                                    м²
+                                </span>            
+                            </label>
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    до
+                                </span>
+                                <input class="slider__input" min="10" max="1000" placeholder="1000" type="number">
+                                <span class="slider__text">
+                                    м²
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form__range-slider" id="range-slider"></div>
                       </div>
-
                       
                       <div class="form__box-right">
                         <h3>Итоговая стоимость квартиры</h3>
@@ -111,6 +156,7 @@
         </div>
       </div>
     </nav>
-    <script src="./js/main.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

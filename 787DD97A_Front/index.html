@@ -62,6 +62,51 @@
                           <button class="form__box-btn">Муниципальный ремонт</button>
                           <button class="form__box-btn">Современный ремонт</button>
                         </div>
+                        <h3 class="slider__title">Количество комнат</h3>
+                        <div class="slider__inputs">
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    от
+                                </span>
+                                <input class="slider__input" min="1" max="15" type="number" id="room-input0">
+                                <span class="slider__text">
+                                    м²
+                                </span>            
+                            </label>
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    до
+                                </span>
+                                <input class="slider__input" min="1" max="15" type="number" id="room-input1">
+                                <span class="slider__text">
+                                    м²
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form__range-slider" id="room-rangeSlider"></div>
+
+                        <h3 class="slider__title">Этажность дома</h3>
+                        <div class="slider__inputs">
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    от
+                                </span>
+                                <input class="slider__input" min="2" max="100" type="number" id="floor-input0">
+                                <span class="slider__text">
+                                    м²
+                                </span>            
+                            </label>
+                            <label class="slider__label">
+                                <span class="slider__text">
+                                    до
+                                </span>
+                                <input class="slider__input" min="2" max="100" type="number" id="floor-input1">
+                                <span class="slider__text">
+                                    м²
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form__range-slider" id="floor-rangeSlider"></div>
                         <div class="form__floor">
                           <label for="floor">Нужный этаж</label>
                           <input class="form__input" id="floor" type="text" min="0" max="100" placeholder="1">
@@ -72,13 +117,14 @@
                           <button class="form__box-btn">Монолит</button>
                           <button class="form__box-btn">Панель</button>
                         </div>
+
                         <h3 class="slider__title">Площадь квартиры</h3>
                         <div class="slider__inputs">
                             <label class="slider__label">
                                 <span class="slider__text">
                                     от
                                 </span>
-                                <input class="slider__input" min="10" max="1000" placeholder="10" type="number" id="input-0">
+                                <input class="slider__input" min="10" max="130" type="number" id="flat-input0">
                                 <span class="slider__text">
                                     м²
                                 </span>            
@@ -87,21 +133,20 @@
                                 <span class="slider__text">
                                     до
                                 </span>
-                                <input class="slider__input" min="10" max="1000" placeholder="1000" type="number" id="input-1">
+                                <input class="slider__input" min="10" max="130" type="number" id="flat-input1">
                                 <span class="slider__text">
                                     м²
                                 </span>
                             </label>
                         </div>
-                        <div class="form__range-slider" id="range-slider"></div>
-                        
+                        <div class="form__range-slider" id="flat-rangeSlider"></div>
                         <h3 class="slider__title">Площадь кухни</h3>
                         <div class="slider__inputs">
                             <label class="slider__label">
                                 <span class="slider__text">
                                     от
                                 </span>
-                                <input class="slider__input" min="10" max="1000" placeholder="10" type="number">
+                                <input class="slider__input" min="2" max="15" type="number" id="kitchen-input0">
                                 <span class="slider__text">
                                     м²
                                 </span>            
@@ -110,15 +155,21 @@
                                 <span class="slider__text">
                                     до
                                 </span>
-                                <input class="slider__input" min="10" max="1000" placeholder="1000" type="number">
+                                <input class="slider__input" min="2" max="15" type="number" id="kitchen-input1">
                                 <span class="slider__text">
                                     м²
                                 </span>
                             </label>
                         </div>
-                        <div class="form__range-slider" id="range-slider"></div>
+                        <div class="form__range-slider" id="kitchen-rangeSlider"></div>
+                        <div class="switch">
+                          <div class="switch__title">Наличие балкона/лоджии</div>
+                          <div class="switch__checkbox">
+                              <input type="checkbox">
+                          </div>
+                        </div>
                       </div>
-                      
+
                       <div class="form__box-right">
                         <h3>Итоговая стоимость квартиры</h3>
                         <img src="images/checklogotip.png" alt="" width="150">

@@ -200,11 +200,16 @@ body{
   /* margin-bottom: 100px; */
 }
 
-.slider__title{ margin-bottom: 20px; }
+.slider__title{ 
+  /* margin: 20px 0; */
+  line-height: 40px;
+  font-weight: 400;
+  color: #282828; 
+}
 
 .form__range-slider{
   width: 294px;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .slider__inputs{
@@ -278,4 +283,56 @@ input[type="number"]:focus {
   width: 22px;
   height: 22px;
   top: -8px;
+}
+
+.switch{
+  /* margin: 0; */
+  /* padding: 0; */
+  /* background: #f3f3f3; */
+  display: flex;
+  justify-content: space-between;
+  width: 318px;
+  /* margin-left: 100px; */
+}
+
+.switch__title{
+  line-height: 40px;
+  font-weight: 400;
+  color: #282828; 
+}
+
+input[type="checkbox"]{
+  position: relative;
+  width: 50px;
+  height: 25px;
+  -webkit-appearance: none;
+  outline: none;
+  background: #c6c6c6;
+  border-radius: 20px;
+  transition: .5s;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+  /* padding-top: 30px; */
+  margin-top: 10px;
+}
+
+input:checked[type="checkbox"]{
+  background: #40e551;
+}
+
+input[type="checkbox"]::before{
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  background: #fff;
+  transition: .5s;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+
+input:checked[type="checkbox"]::before{
+  left: 24px;
 }

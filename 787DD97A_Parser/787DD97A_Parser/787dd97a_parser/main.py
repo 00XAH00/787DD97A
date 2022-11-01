@@ -7,7 +7,7 @@ https://www.avito.ru/moskva/kvartiry/prodam/novostroyka-ASgBAQICAUSSA8YQAUDmBxSO
 
 def main():
     av = avito()
-    soup = av.get_page(1)
+    soup = av.get_links(1)
 
     # av.get_apartments(soup)
 

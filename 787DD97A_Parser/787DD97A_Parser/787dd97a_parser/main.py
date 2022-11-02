@@ -14,7 +14,9 @@ def main():
             "https://www.avito.ru/moskva/kvartiry/2-k._kvartira_617m_215et._2403787091",
             "https://www.avito.ru/moskva/kvartiry/1-k._kvartira_415m_2030et._2451522868",
             "https://www.avito.ru/moskva/kvartiry/3-k._kvartira_1118m_921et._2518299010",
-            "https://www.avito.ru/moskva/kvartiry/2-k._kvartira_642m_418et._2642105789"]
+            "https://www.avito.ru/moskva/kvartiry/2-k._kvartira_642m_418et._2642105789",
+            "https://www.avito.ru/moskva/kvartiry/2-k._kvartira_41m_35et._2586354037",
+            "https://www.avito.ru/moskva/kvartiry/2-k._kvartira_442m_35et._2604204256"]
 
     av.get_apartments(links)
 

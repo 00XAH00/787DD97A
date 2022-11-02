@@ -29,7 +29,7 @@ class avito():
         self.driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
 
 
-    def get_links(self) -> BeautifulSoup:
+    def get_links(self) -> list:
         apartment_links = []
         def thread_links_get(start:int, end:int):
             driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
@@ -52,6 +52,8 @@ class avito():
         thread_first = threading.Thread(target=thread_links_get, args=(1, last_page))
         thread_first.start()
         thread_first.join()
+
+        return apartment_links
 
 
     def get_apartments(self, soup:BeautifulSoup):

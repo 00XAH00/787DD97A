@@ -1,3 +1,4 @@
+import datetime
 import time, threading, pprint
 from bs4 import BeautifulSoup
 
@@ -57,17 +58,25 @@ class avito():
     def get_apartments(self, links:list):
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
-        for link in links[0:1]:
+        for link in links[5:8]: # [0:1]
             driver.get(link)
             source = driver.page_source
             soup = BeautifulSoup(source, 'lxml')
             apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
             apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
 
+            rooms = None
+            segment = None
+            house_floors = None
+            material = None
+            apartment_floor = None
+            apatments_area = None
+            kitchen_area = None
             balcony = False
+
+            condition = None
             for item in apartment_about:
                 item_split = item.text.split(":")
-                # print([item_split[0]])
 
                 match item_split[0]:
                     case "Количество комнат":
@@ -90,17 +99,40 @@ class avito():
                     # case "Срок сдачи":
                     #     segment = 1
 
+            house_about = soup.find('div', class_="style-item-params-McqZq")
+            house_about = house_about.find_all("li", class_="style-item-params-list-item-aXXql")
+            for item in house_about:
+                item_split = item.text.split(":")
+
+                # print([item_split[0]])
+                match item_split[0]:
+                    case "Название новостройки":
+                        segment = 1
+                    case "Год постройки":
+                        year = int(item_split[1])
+                        print(year)
+                        if (year > int(datetime.date.today().year)-5): segment = 1
+                        elif (year >= 2000): segment = 2
+                        elif  (year < 2000): segment = 3
+                    case "Тип дома":
+                        if (item_split[1] == "\xa0монолитно-кирпичный") or (item_split[1] == "\xa0монолитный"): material = 1
+                        elif (item_split[1] == "\xa0кирпичный"): material = 2
+                        elif (item_split[1] == "\xa0панельный"): material = 3
 
             # segment
             # 1 - Новостройка
             # 2 - современное жилье
             # 3 - старый жилой фонд
+            # material
+            # 1 - монолитный
+            # 2 - кирпичный
+            # 3 - панельный
             apartments_info.update({
                 link.split("/")[-1]: {
                     "rooms": rooms,
-                    "segment": None,
+                    "segment": segment,
                     "house_floors": house_floors,
-                    "material": None,
+                    "material": material,
                     "apartment_floor": apartment_floor,
                     "apatments_area": apatments_area,
                     "kitchen_area": kitchen_area,
@@ -110,5 +142,7 @@ class avito():
                 }
             })
             #  = apartment_about[5]
+            time.sleep(0.5)
+        driver.quit()
 
-            pprint.pprint(apartments_info)
+        pprint.pprint(apartments_info)

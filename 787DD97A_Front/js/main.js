@@ -167,7 +167,7 @@ if (kitchenRangeSlider) {
         });
     });
 }
-
+//делаем кнопку "загрузить файл excel"
 let inputs = document.querySelectorAll('.input__file');
       Array.prototype.forEach.call(inputs, function (input) {
         let label = input.nextElementSibling,

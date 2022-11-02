@@ -1,4 +1,4 @@
-import requests, time, threading
+import time, threading, pprint
 from bs4 import BeautifulSoup
 
 # from user_agent import generate_user_agent, generate_navigator
@@ -28,7 +28,6 @@ class avito():
         self.caps["pageLoadStrategy"] = "eager"
         self.driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
 
-
     def get_links(self) -> list:
         apartment_links = []
         def thread_links_get(start:int, end:int):
@@ -55,7 +54,61 @@ class avito():
 
         return apartment_links
 
+    def get_apartments(self, links:list):
+        driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
+        apartments_info = {}
+        for link in links[0:1]:
+            driver.get(link)
+            source = driver.page_source
+            soup = BeautifulSoup(source, 'lxml')
+            apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
+            apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
 
-    def get_apartments(self, soup:BeautifulSoup):
-        apartments_div = soup.find_all('div', class_="iva-item-content-rejJg")
-        print(apartments_div)
+            balcony = False
+            for item in apartment_about:
+                item_split = item.text.split(":")
+                # print([item_split[0]])
+
+                match item_split[0]:
+                    case "Количество комнат":
+                        rooms = item_split[1]
+                    case "Общая площадь":
+                        apatments_area = item_split[1].split("\xa0")[0]
+                    case "Площадь кухни":
+                        kitchen_area = item_split[1].split("\xa0")[0]
+                    case "Этаж":
+                        floor = item_split[1].split(" из ")
+                        apartment_floor = floor[0]
+                        house_floors = floor[1]
+                    case "Балкон или лоджия":
+                        if (item.text.lower() == "балкон") or (item.text.lower() == "лоджия"): balcony = True
+                        else: balcony = False
+                    case "Отделка":
+                        condition = item_split[1]
+                    # case "Отделка":
+                    #     material = item_split[1]
+                    # case "Срок сдачи":
+                    #     segment = 1
+
+
+            # segment
+            # 1 - Новостройка
+            # 2 - современное жилье
+            # 3 - старый жилой фонд
+            apartments_info.update({
+                link.split("/")[-1]: {
+                    "rooms": rooms,
+                    "segment": None,
+                    "house_floors": house_floors,
+                    "material": None,
+                    "apartment_floor": apartment_floor,
+                    "apatments_area": apatments_area,
+                    "kitchen_area": kitchen_area,
+                    "balcony": balcony,
+                    "metro_distance": None,
+                    "condition": condition
+                }
+            })
+            #  = apartment_about[5]
+
+            pprint.pprint(apartments_info)

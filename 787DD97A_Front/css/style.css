@@ -412,7 +412,6 @@ input:checked[type="checkbox"]::before{
   max-width: 290px;
   height: 60px;
   background: #18e55e;
-  /* 53B374 #18e55e #41e178 */
   color: #fff;
   font-size: 1.125rem;
   font-weight: 700;

@@ -16,5 +16,5 @@ arrayflats[2] = new Flats(18, 15, 58.6, 14, true, 10, 21400000, "Эконом");
 
 
 
-CalcPriceOfFlats.PriceOfFlat(flat, arrayflats);
+CalcPriceOfFlats.PriceOfFlat(flat, arrayflats,3);
 { }

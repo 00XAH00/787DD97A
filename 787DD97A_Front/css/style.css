@@ -316,7 +316,7 @@ input[type="checkbox"]{
 }
 
 input:checked[type="checkbox"]{
-  background: #40e551;
+  background: #53B374;
 }
 
 input[type="checkbox"]::before{
@@ -324,15 +324,108 @@ input[type="checkbox"]::before{
   position: absolute;
   width: 25px;
   height: 25px;
+  border: 1px solid #c1c1c1;
   border-radius: 20px;
   top: 0;
   left: 0;
   background: #fff;
   transition: .5s;
   transform: scale(1.1);
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.2);
 }
 
 input:checked[type="checkbox"]::before{
   left: 24px;
+}
+
+.form__box-right{ 
+  width: 411px;
+
+}
+
+.right__title{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 46px;
+    color: #000;
+    width: 387px;
+    padding-bottom: 10px;
+}
+
+.total__cost{
+  line-height: 18px;
+  text-decoration: none;
+  /* color: #fff; */
+  margin-bottom: 28px;
+  padding-left: 67px;
+  display: inline-block;
+  position: relative;
+}
+
+.total__cost::before{
+  content: "";
+  width: 30px;
+  height: 30px;
+  background-image: url(../images/arrows.png);
+  position: absolute;
+  left: 0;
+  top: -4px;
+}
+
+.input__wrapper {
+  width: 100%;
+  position: relative;
+  margin: 15px 0;
+  text-align: center;
+  padding-right: 149px;
+}
+ 
+.input__file {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+ 
+.input__file-icon-wrapper {
+  height: 60px;
+  width: 60px;
+  margin-right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-right: 1px solid #fff;
+}
+ 
+.input__file-button-text {
+  line-height: 1;
+  margin-top: 1px;
+}
+ 
+.input__file-button {
+  width: 100%;
+  max-width: 290px;
+  height: 60px;
+  background: #18e55e;
+  /* 53B374 #18e55e #41e178 */
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  border-radius: 7px;
+  cursor: pointer;
+  margin: 0 auto;
 }

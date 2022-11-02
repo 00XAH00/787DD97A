@@ -122,7 +122,7 @@ if (flatRangeSlider) {
         let arr = [null, null];
         arr[i] = value;
 
-        floorRangeSlider.noUiSlider.set(arr);
+        flatRangeSlider.noUiSlider.set(arr);
     };
 
     flatInputs.forEach((el, index) => {

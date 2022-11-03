@@ -58,14 +58,13 @@ class avito():
     def get_apartments(self, links:list):
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
-        for link in links[5:13]: # [0:1] [5,8]
+        count_skiped_apartment = 0
+        for link in links[12:13]: # [0:1] [5,8]
             driver.get(link)
             source = driver.page_source
-            # print(source)
             soup = BeautifulSoup(source, 'lxml')
             apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
             apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
-            # print(apartment_about)
 
             floor = None
             rooms = None
@@ -105,13 +104,9 @@ class avito():
                         # elif (item_split[1] == " евро") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
                         # elif (item_split[1] == " ="): condition = "муниципальный ремонт"
 
-            # print(rooms is None)
-            # print(apatments_area is None)
-            # print(kitchen_area is None)
-            # print(apartment_floor is None)
-            # print(house_floors is None)
-            # print(condition is None)
-            if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)): continue
+            if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
+                count_skiped_apartment += 1
+                continue
 
             house_about = soup.find('div', class_="style-item-params-McqZq")
             house_about = house_about.find_all("li", class_="style-item-params-list-item-aXXql")
@@ -132,6 +127,11 @@ class avito():
                         elif (item_split[1] == "\xa0кирпичный"): material = 2
                         elif (item_split[1] == "\xa0панельный"): material = 3
 
+
+            position = soup.find('div', class_="style-item-address-KooqC")
+
+            address = position.find("span", class_="style-item-address__string-wt61A").text
+            print(address)
             # segment
             # 1 - Новостройка
             # 2 - современное жилье
@@ -154,8 +154,8 @@ class avito():
                     "condition": condition
                 }
             })
-            #  = apartment_about[5]
+
             time.sleep(0.5)
         driver.quit()
 
-        pprint.pprint(apartments_info)
+        # pprint.pprint(apartments_info)

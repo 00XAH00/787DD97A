@@ -30,7 +30,7 @@ class avito():
         self.caps["pageLoadStrategy"] = "eager"
         self.driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
 
-    def get_links(self) -> list:
+    def get_links(self, devision) -> list:
         apartment_links = []
         def thread_links_get(start:int, end:int):
             driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
@@ -50,7 +50,7 @@ class avito():
         last_page = int(self.driver.find_elements(By.CLASS_NAME, 'pagination-item-JJq_j')[-2].text)+1 # находим последнюю страницу
         self.driver.quit()
 
-        thread_first = threading.Thread(target=thread_links_get, args=(1, last_page))
+        thread_first = threading.Thread(target=thread_links_get, args=(1, int(last_page/devision)))
         thread_first.start()
         thread_first.join()
 
@@ -60,6 +60,7 @@ class avito():
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
         count_skiped_apartment = 0
+        count_apartment_done = 0
         for link in links:
             # Получение страницы с квартирой
             driver.get(link)
@@ -181,9 +182,10 @@ class avito():
                     "condition": condition
                 }
             })
+            count_apartment_done += 1
 
-            time.sleep(1.5)
+            time.sleep(1)
         driver.quit()
 
         pprint.pprint(apartments_info)
-        print(f"Обработано {len(links)} квартир, пропущенно {count_skiped_apartment}")
+        print(f"Всего квартир: {len(links)}\nОбработано {len(count_apartment_done)}\nПропущенно {count_skiped_apartment}")

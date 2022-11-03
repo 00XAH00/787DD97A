@@ -1,6 +1,7 @@
 import datetime
 import time, threading, pprint
 from bs4 import BeautifulSoup
+from math import ceil
 
 # from user_agent import generate_user_agent, generate_navigator
 
@@ -59,13 +60,13 @@ class avito():
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
         count_skiped_apartment = 0
-        for link in links[12:13]: # [0:1] [5,8]
+        for link in links:
+            # Получение страницы с квартирой
             driver.get(link)
             source = driver.page_source
             soup = BeautifulSoup(source, 'lxml')
-            apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
-            apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
 
+            # обнуление данных о квартире
             floor = None
             rooms = None
             segment = None
@@ -75,8 +76,16 @@ class avito():
             apatments_area = None
             kitchen_area = None
             balcony = False
-
             condition = None
+            segment = None
+            material = None
+            address = None
+            undeground_minutes = None
+            undeground_name = None
+
+            # Получение информации о квартире
+            apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
+            apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
             for item in apartment_about:
                 item_split = item.text.split(":")
 
@@ -103,17 +112,16 @@ class avito():
                         # if (item_split[1] == " требует ремонта"): condition = "без отделки"
                         # elif (item_split[1] == " евро") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
                         # elif (item_split[1] == " ="): condition = "муниципальный ремонт"
-
             if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
                 count_skiped_apartment += 1
                 continue
 
+            # Получение информации о доме
             house_about = soup.find('div', class_="style-item-params-McqZq")
             house_about = house_about.find_all("li", class_="style-item-params-list-item-aXXql")
             for item in house_about:
                 item_split = item.text.split(":")
 
-                # print([item_split[0]])
                 match item_split[0]:
                     case "Название новостройки":
                         segment = 1
@@ -126,12 +134,29 @@ class avito():
                         if (item_split[1] == "\xa0монолитно-кирпичный") or (item_split[1] == "\xa0монолитный"): material = 1
                         elif (item_split[1] == "\xa0кирпичный"): material = 2
                         elif (item_split[1] == "\xa0панельный"): material = 3
+            if ((segment is None) or (material is None)):
+                count_skiped_apartment += 1
+                continue
 
-
+            # Получение блока с информацей о метро
             position = soup.find('div', class_="style-item-address-KooqC")
-
+            # Получение адреса
             address = position.find("span", class_="style-item-address__string-wt61A").text
-            print(address)
+            # Получение ближайшего метро к дому
+            undeground = position.find('span', class_="style-item-address-georeferences-item-TZsrp")
+            undeground_name = undeground.find('span', class_='').text
+            # Получение времени до метро
+            undeground_minutes = undeground.find('span', class_="style-item-address-georeferences-item-interval-ujKs2").text
+            undeground_minutes_temp = undeground_minutes.split(" ")[0].split("–")
+            if (len(undeground_minutes_temp) == 2):
+                undeground_minutes = undeground_minutes_temp
+                undeground_minutes = int(ceil((int(undeground_minutes[0]) + int(undeground_minutes[1])) / 2))
+            else:
+                undeground_minutes = undeground_minutes.split(" ")[1]
+            if ((address is None) or (undeground_name is None) or (undeground_minutes is None)):
+                count_skiped_apartment += 1
+                continue
+
             # segment
             # 1 - Новостройка
             # 2 - современное жилье
@@ -142,6 +167,9 @@ class avito():
             # 3 - панельный
             apartments_info.update({
                 link.split("/")[-1]: {
+                    "adress": address,
+                    "undeground": undeground_name,
+                    "undeground_minutes": undeground_minutes,
                     "rooms": rooms,
                     "segment": segment,
                     "house_floors": house_floors,
@@ -150,12 +178,12 @@ class avito():
                     "apatments_area": apatments_area,
                     "kitchen_area": kitchen_area,
                     "balcony": balcony,
-                    "metro_distance": None,
                     "condition": condition
                 }
             })
 
-            time.sleep(0.5)
+            time.sleep(1.5)
         driver.quit()
 
-        # pprint.pprint(apartments_info)
+        pprint.pprint(apartments_info)
+        print(f"Обработано {len(links)} квартир, пропущенно {count_skiped_apartment}")

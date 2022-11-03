@@ -17,36 +17,73 @@ namespace CalcPriceOfFlat
     public class CalcPriceOfFlats                        //калькулятор стоимости квартиры
     {
 
-        public static void SetParametersTabel(string namefile)
-        {
-            string file = namefile;
+        public static void SetParametersTabel(string namefile)//парсер Excel файла для параметров калькулятора
+        {         
 
-            IXLWorkbook wb = new XLWorkbook(file);
+            IXLWorkbook wb = new XLWorkbook(namefile);
 
+            IXLWorksheet ws = wb.Worksheets.Worksheet(1);//floor
 
-
-            IXLWorksheet ws = wb.Worksheets.Worksheet(2);//floor
-
-            for (int i = 2; i < 6; i++)
-                for (int j = 2; j < 6; j++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
-                    Console.WriteLine(ws.Cell(i, j).Value);
-                    object value = ws.Cell(i, j).Value;
-                    area[i - 1, j - 1] = Convert.ToDouble(value);
+                    Console.WriteLine(ws.Cell(i + 2, j + 2).Value);
+                    object value = ws.Cell(i + 2, j + 2).Value;
+                    floor[i, j] = Convert.ToDouble(value);
                 }
-            ws = wb.Worksheets.Worksheet(3);//distancefromMetro
+            
+            ws = wb.Worksheets.Worksheet(2);//area
 
-            for (int i = 2; i < 7; i++)
-                for (int j = 2; j < 8; j++)
+            for (int i = 0; i < 7; i++)
+                for (int j = 0; j < 7; j++)
                 {
-                    Console.WriteLine(ws.Cell(i, j).Value);
-                    object value = ws.Cell(i, j).Value;
-                    distanceformetro[i - 2, j - 2] = Convert.ToDouble(value);
+                    Console.WriteLine(ws.Cell(i+1, j + 1).Value);
+                    object value = ws.Cell(i+1, j+1).Value;
+                    area[i , j ] = Convert.ToDouble(value);
                 }
 
+            ws = wb.Worksheets.Worksheet(3);//kicthenarea
 
-            wb.SaveAs(file);
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.WriteLine(ws.Cell(i + 1, j + 1).Value);
+                    object value = ws.Cell(i + 1, j + 1).Value;
+                    kitchenArea[i, j] = Convert.ToDouble(value);
+                }
+
+            ws = wb.Worksheets.Worksheet(4);//balcon
+
+            for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    Console.WriteLine(ws.Cell(i + 2, j + 2).Value);
+                    object value = ws.Cell(i + 2, j + 2).Value;
+                    balcon[i, j] = Convert.ToDouble(value);
+                }
+            ws = wb.Worksheets.Worksheet(5);//distancefromMetro
+
+            for (int i = 0; i < 7; i++)
+                for (int j = 0; j < 7; j++)
+                {
+                    Console.WriteLine(ws.Cell(i + 1, j + 1).Value);
+                    object value = ws.Cell(i + 1, j + 1).Value;
+                    distance[i, j] = Convert.ToDouble(value);
+                }
+            ws = wb.Worksheets.Worksheet(6);//repair
+
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.WriteLine(ws.Cell(i + 2, j + 2).Value);
+                    object value = ws.Cell(i + 2, j + 2).Value;
+                    repair[i, j] = Convert.ToDouble(value);
+                }
+
+
+            wb.SaveAs(namefile);
         }
+
 
         static double[,] floor = new double[,]
         {
@@ -55,21 +92,23 @@ namespace CalcPriceOfFlat
             { 3.2, -4.0,   0.0 }
         };
 
-        static double[,] area = new double[,]
-        {//если значение больше 14 - оно экстремальное
-            {   0.0,   6.0,  14.0,  21.0,  28.0, 31.0 },
-            {  -6.0,   0.0,   7.0,  14.0,  21.0, 24.0 },
-            { -12.0,  -7.0,   0.0,   6.0,  13.0, 16.0 },
-            { -17.0, -12.0,  -6.0,   0.0,   6.0,  9.0 },
-            { -22.0, -17.0, -11.0,  -6.0,   0.0,  3.0 },
-            { -24.0, -19.0, -13.0,  -8.0,  -3.0,  0.0 }
+        static double[,] area = new double[7, 7]
+        {   //если значение больше 14 - оно экстремальное
+            {   0,    30,    50,    65,    90,   120,  150 },
+            {  30,   0.0,   6.0,  14.0,  21.0,  28.0, 31.0 },
+            {  50,  -6.0,   0.0,   7.0,  14.0,  21.0, 24.0 },
+            {  65, -12.0,  -7.0,   0.0,   6.0,  13.0, 16.0 },
+            {  90, -17.0, -12.0,  -6.0,   0.0,   6.0,  9.0 },
+            { 120, -22.0, -17.0, -11.0,  -6.0,   0.0,  3.0 },
+            { 150, -24.0, -19.0, -13.0,  -8.0,  -3.0,  0.0 }
         };
 
         static double[,] kitchenArea = new double[,]
         {
-            { 0.0,- 2.9, -8.3 },
-            { 3.0,  0.0, -5.5 },
-            { 9.0,  5.8,  0.0 }
+            {  0,   7,   10,   15 },
+            {  7, 0.0, -2.9, -8.3 },
+            { 10, 3.0,  0.0, -5.5 },
+            { 15, 9.0,  5.8,  0.0 }
         };
 
         static double[,] balcon = new double[,]
@@ -78,15 +117,16 @@ namespace CalcPriceOfFlat
             { 5.3,  0.0 }
         };
 
-        static double[,] distanceformetro = new double[,]
+        static double[,] distance = new double[,]
         {
-            { 0,  5.0,    10,     15,    30,    60,   90  },
-            { 5,  0.0,   7.0,   12.0,  17.0,  24.0,  29.0 },
-            {10, -7.0,   0.0,    4.0,   9.0,  15.0,  20.0 },
-            {15,-11.0,  -4.0,    0.0,   5.0,  11.0,  15.0 },
-            {30,-15.0,  -8.0,   -5.0,   0.0,   6.0,  10.0 },
-            {60,-19.0, -13.0,  -10.0,  -6.0,   0.0,   4.0 },
-            {90,-22.0, -17.0,  -13.0,  -9.0,  -4.0,   0.0 }
+            //если значение больше 14 - оно экстремальное
+            {  0,   5.0,    10,     15,    30,    60,   90  },
+            {  5,   0.0,   7.0,   12.0,  17.0,  24.0,  29.0 },
+            { 10,  -7.0,   0.0,    4.0,   9.0,  15.0,  20.0 },
+            { 15, -11.0,  -4.0,    0.0,   5.0,  11.0,  15.0 },
+            { 30, -15.0,  -8.0,   -5.0,   0.0,   6.0,  10.0 },
+            { 60, -19.0, -13.0,  -10.0,  -6.0,   0.0,   4.0 },
+            { 90, -22.0, -17.0,  -13.0,  -9.0,  -4.0,   0.0 }
         };
 
         static double[,] repair = new double[,]
@@ -180,13 +220,13 @@ namespace CalcPriceOfFlat
             /*Для того, чтобы работало, сделать на 1 меньше i при срабатывании условия*/
             int i = -1;
             int j = -1;
-            if (flat.KitchentArea < 7) i = 1;
-            else if (flat.KitchentArea >= 7 && flat.KitchentArea < 10) i = 2;
-            else if (flat.KitchentArea >= 10 && flat.KitchentArea < 15) i = 3;
+            if (flat.KitchentArea < kitchenArea[1,0]) i = 1;
+            else if (flat.KitchentArea >= kitchenArea[1, 0] && flat.KitchentArea < kitchenArea[2, 0]) i = 2;
+            else if (flat.KitchentArea >= kitchenArea[2, 0] && flat.KitchentArea < kitchenArea[3, 0]) i = 3;
 
-            if (flats.KitchentArea < 7) j = 1;
-            else if (flats.KitchentArea >= 7 && flats.KitchentArea < 10) j = 2;
-            else if (flats.KitchentArea >= 10 && flats.KitchentArea < 15) j = 3;
+            if (flats.KitchentArea < kitchenArea[0, 1]) j = 1;
+            else if (flats.KitchentArea >= kitchenArea[0, 1] && flats.KitchentArea < kitchenArea[0, 2]) j = 2;
+            else if (flats.KitchentArea >= kitchenArea[0, 2] && flats.KitchentArea < kitchenArea[0, 3]) j = 3;
 
             flats.Price += flats.Price / 100 * kitchenArea[i, j];
             flats.weightprocent += (float)kitchenArea[i, j];
@@ -238,19 +278,19 @@ namespace CalcPriceOfFlat
             int i = -1;
             int j = -1;
 
-            if (flat.ApartmentArea < 30) i = 1;
-            else if (flat.ApartmentArea >= 30 && flat.ApartmentArea < 50) i = 2;
-            else if (flat.ApartmentArea >= 50 && flat.ApartmentArea < 65) i = 3;
-            else if (flat.ApartmentArea >= 65 && flat.ApartmentArea < 90) i = 4;
-            else if (flat.ApartmentArea >= 90 && flat.ApartmentArea < 120) i = 5;
-            else if (flat.ApartmentArea > 120) i = 6;
+            if (flat.ApartmentArea < area[1,0]) i = 1;
+            else if (flat.ApartmentArea >= area[1, 0] && flat.ApartmentArea < area[2, 0]) i = 2;
+            else if (flat.ApartmentArea >= area[2, 0] && flat.ApartmentArea < area[3, 0]) i = 3;
+            else if (flat.ApartmentArea >= area[3, 0] && flat.ApartmentArea < area[4, 0]) i = 4;
+            else if (flat.ApartmentArea >= area[4, 0] && flat.ApartmentArea < area[5, 0]) i = 5;
+            else if (flat.ApartmentArea > area[5, 0] ) i = 6;
 
-            if (flats.ApartmentArea < 30) j = 1;
-            else if (flats.ApartmentArea >= 30 && flats.ApartmentArea < 50) j = 2;
-            else if (flats.ApartmentArea >= 50 && flats.ApartmentArea < 65) j = 3;
-            else if (flats.ApartmentArea >= 65 && flats.ApartmentArea < 90) j = 4;
-            else if (flats.ApartmentArea >= 90 && flats.ApartmentArea < 120) j = 5;
-            else if (flats.ApartmentArea > 120) j = 6;
+            if (flats.ApartmentArea < area[0, 1]) j = 1;
+            else if (flats.ApartmentArea >= area[0, 1] && flats.ApartmentArea < area[0, 2]) j = 2;
+            else if (flats.ApartmentArea >= area[0, 2] && flats.ApartmentArea < area[0, 3]) j = 3;
+            else if (flats.ApartmentArea >= area[0, 3] && flats.ApartmentArea < area[0, 4]) j = 4;
+            else if (flats.ApartmentArea >= area[0, 4] && flats.ApartmentArea < area[0, 5]) j = 5;
+            else if (flats.ApartmentArea > area[0, 5]) j = 6;
 
             flats.Price += (flats.Price / 100 * area[i, j]);
             flats.weightprocent += (float)area[i, j];
@@ -261,22 +301,22 @@ namespace CalcPriceOfFlat
         {
             int i = -1;
             int j = -1;
-            if (flat.DistanceFromMetroStation < distanceformetro[1, 0]) i = 1;
-            else if (flat.DistanceFromMetroStation >= 5 && flat.DistanceFromMetroStation < 10) i = 2;
-            else if (flat.DistanceFromMetroStation >= 10 && flat.DistanceFromMetroStation < 15) i = 3;
-            else if (flat.DistanceFromMetroStation >= 15 && flat.DistanceFromMetroStation < 30) i = 4;
-            else if (flat.DistanceFromMetroStation >= 30 && flat.DistanceFromMetroStation < 60) i = 5;
-            else if (flat.DistanceFromMetroStation >= 60 && flat.DistanceFromMetroStation < 90) i = 6;
+            if (flat.DistanceFromMetroStation < distance[1, 0]) i = 1;
+            else if (flat.DistanceFromMetroStation >= distance[1, 0] && flat.DistanceFromMetroStation < distance[2, 0]) i = 2;
+            else if (flat.DistanceFromMetroStation >= distance[2, 0] && flat.DistanceFromMetroStation < distance[3, 0]) i = 3;
+            else if (flat.DistanceFromMetroStation >= distance[3, 0] && flat.DistanceFromMetroStation < distance[4, 0]) i = 4;
+            else if (flat.DistanceFromMetroStation >= distance[4, 0] && flat.DistanceFromMetroStation < distance[5, 0]) i = 5;
+            else if (flat.DistanceFromMetroStation >= distance[5, 0] && flat.DistanceFromMetroStation < distance[6, 0]) i = 6;
 
-            if (flats.DistanceFromMetroStation < 5) j = 1;
-            else if (flats.DistanceFromMetroStation >= 5 && flats.DistanceFromMetroStation < 10) j = 2;
-            else if (flats.DistanceFromMetroStation >= 10 && flats.DistanceFromMetroStation < 15) j = 3;
-            else if (flats.DistanceFromMetroStation >= 15 && flats.DistanceFromMetroStation < 30) j = 4;
-            else if (flats.DistanceFromMetroStation >= 30 && flats.DistanceFromMetroStation < 60) j = 5;
-            else if (flats.DistanceFromMetroStation >= 60 && flats.DistanceFromMetroStation < 90) j = 6;
+            if (flats.DistanceFromMetroStation < distance[0, 1]) j = 1;
+            else if (flats.DistanceFromMetroStation >= distance[0, 1] && flats.DistanceFromMetroStation < distance[0, 2]) j = 2;
+            else if (flats.DistanceFromMetroStation >= distance[0, 2] && flats.DistanceFromMetroStation < distance[0, 3]) j = 3;
+            else if (flats.DistanceFromMetroStation >= distance[0, 3] && flats.DistanceFromMetroStation < distance[0, 4]) j = 4;
+            else if (flats.DistanceFromMetroStation >= distance[0, 4] && flats.DistanceFromMetroStation < distance[0, 5]) j = 5;
+            else if (flats.DistanceFromMetroStation >= distance[0, 5] && flats.DistanceFromMetroStation < distance[0, 6]) j = 6;
 
-            flats.Price += (flats.Price / 100 * distanceformetro[i, j]);
-            flats.weightprocent += (float)distanceformetro[i, j];
+            flats.Price += (flats.Price / 100 * distance[i, j]);
+            flats.weightprocent += (float)distance[i, j];
 
             return flats.Price / flats.ApartmentArea;
         }
@@ -290,8 +330,5 @@ namespace CalcPriceOfFlat
         {
             return m2Price * s;
         }
-
-
-
     }
 }

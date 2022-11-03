@@ -58,13 +58,16 @@ class avito():
     def get_apartments(self, links:list):
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
-        for link in links[5:8]: # [0:1]
+        for link in links[5:13]: # [0:1] [5,8]
             driver.get(link)
             source = driver.page_source
+            # print(source)
             soup = BeautifulSoup(source, 'lxml')
             apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
             apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
+            # print(apartment_about)
 
+            floor = None
             rooms = None
             segment = None
             house_floors = None
@@ -80,24 +83,35 @@ class avito():
 
                 match item_split[0]:
                     case "Количество комнат":
-                        rooms = item_split[1]
+                        rooms = item_split[1].lstrip()
                     case "Общая площадь":
-                        apatments_area = item_split[1].split("\xa0")[0]
+                        apatments_area = item_split[1].split("\xa0")[0].lstrip()
                     case "Площадь кухни":
-                        kitchen_area = item_split[1].split("\xa0")[0]
+                        kitchen_area = item_split[1].split("\xa0")[0].lstrip()
                     case "Этаж":
                         floor = item_split[1].split(" из ")
-                        apartment_floor = floor[0]
+                        apartment_floor = floor[0].lstrip()
                         house_floors = floor[1]
                     case "Балкон или лоджия":
                         if (item.text.lower() == "балкон") or (item.text.lower() == "лоджия"): balcony = True
                         else: balcony = False
-                    case "Отделка":
-                        condition = item_split[1]
-                    # case "Отделка":
-                    #     material = item_split[1]
-                    # case "Срок сдачи":
-                    #     segment = 1
+                    case "Отделка" | "Ремонт":
+                        # condition = item_split[1].lstrip()
+                        if (item_split[1] == " чистовая") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
+                        elif (item_split[1] == " косметический") or (item_split[1] == " евро"): condition = "муниципальный ремонт"
+                        elif (item_split[1] == " предчистовая") or (item_split[1] == " без отделки") or (item_split[1] == " требует ремонта"): condition = "без отделки"
+                    # case "Ремонт":
+                        # if (item_split[1] == " требует ремонта"): condition = "без отделки"
+                        # elif (item_split[1] == " евро") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
+                        # elif (item_split[1] == " ="): condition = "муниципальный ремонт"
+
+            # print(rooms is None)
+            # print(apatments_area is None)
+            # print(kitchen_area is None)
+            # print(apartment_floor is None)
+            # print(house_floors is None)
+            # print(condition is None)
+            if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)): continue
 
             house_about = soup.find('div', class_="style-item-params-McqZq")
             house_about = house_about.find_all("li", class_="style-item-params-list-item-aXXql")
@@ -110,7 +124,6 @@ class avito():
                         segment = 1
                     case "Год постройки":
                         year = int(item_split[1])
-                        print(year)
                         if (year > int(datetime.date.today().year)-5): segment = 1
                         elif (year >= 2000): segment = 2
                         elif  (year < 2000): segment = 3

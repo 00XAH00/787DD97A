@@ -22,6 +22,17 @@ namespace CalcForPriceFlat
 
         }
 
+        public Flat()
+        {
+            this.NumberOfStoreys = 0;
+            this.FloorLocation = 0;
+            this.ApartmentArea = 0;
+            this.KitchentArea = 0;
+            this.balcony = false;
+            this.DistanceFromMetroStation = 0;
+            this.repair = "Без отделки";
+        }
+
         /*Обязательные ценообразующие факторы*/
         public ushort NumberOfStoreys { get; set; } = 0;           //количество этажей от 0 до 65535
         /*Необязательные ценообразующие факторы*/

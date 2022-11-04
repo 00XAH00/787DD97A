@@ -20,7 +20,9 @@ namespace CalcForPriceFlat
             this.DistanceFromMetroStation = DistanseFromMetroStation;
             this.repair = repair;
             this.Price = Price;
-        }      
+        }
+
+        
 
         /*Входные параметры (из БД)*/
         public ushort NumberOfStoreys { get; set; } = 0;           //формат ushort (0-32000)        

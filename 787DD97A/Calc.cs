@@ -10,6 +10,7 @@ using CalcForPriceFlat;
 
 using ClosedXML;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.InkML;
 
 namespace CalcPriceOfFlat
 {
@@ -26,8 +27,7 @@ namespace CalcPriceOfFlat
 
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                {
-                    Console.WriteLine(ws.Cell(i + 2, j + 2).Value);
+                {                    
                     object value = ws.Cell(i + 2, j + 2).Value;
                     floor[i, j] = Convert.ToDouble(value);
                 }
@@ -37,7 +37,6 @@ namespace CalcPriceOfFlat
             for (int i = 0; i < 7; i++)
                 for (int j = 0; j < 7; j++)
                 {
-                    Console.WriteLine(ws.Cell(i+1, j + 1).Value);
                     object value = ws.Cell(i+1, j+1).Value;
                     area[i , j ] = Convert.ToDouble(value);
                 }
@@ -47,7 +46,6 @@ namespace CalcPriceOfFlat
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 4; j++)
                 {
-                    Console.WriteLine(ws.Cell(i + 1, j + 1).Value);
                     object value = ws.Cell(i + 1, j + 1).Value;
                     kitchenArea[i, j] = Convert.ToDouble(value);
                 }
@@ -57,7 +55,6 @@ namespace CalcPriceOfFlat
             for (int i = 0; i < 2; i++)
                 for (int j = 0; j < 2; j++)
                 {
-                    Console.WriteLine(ws.Cell(i + 2, j + 2).Value);
                     object value = ws.Cell(i + 2, j + 2).Value;
                     balcon[i, j] = Convert.ToDouble(value);
                 }
@@ -66,7 +63,6 @@ namespace CalcPriceOfFlat
             for (int i = 0; i < 7; i++)
                 for (int j = 0; j < 7; j++)
                 {
-                    Console.WriteLine(ws.Cell(i + 1, j + 1).Value);
                     object value = ws.Cell(i + 1, j + 1).Value;
                     distance[i, j] = Convert.ToDouble(value);
                 }
@@ -75,15 +71,21 @@ namespace CalcPriceOfFlat
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                 {
-                    Console.WriteLine(ws.Cell(i + 2, j + 2).Value);
                     object value = ws.Cell(i + 2, j + 2).Value;
                     repair[i, j] = Convert.ToDouble(value);
                 }
+            ws = wb.Worksheets.Worksheet(7);//torg
 
+            
+            
+            object value2 = ws.Cell(1, 1).Value;
+            torg = Convert.ToDouble(value2);
+            
 
             wb.SaveAs(namefile);
         }
 
+        static double torg = 4.5;
 
         static double[,] floor = new double[,]
         {
@@ -136,8 +138,6 @@ namespace CalcPriceOfFlat
             { 20100.0,   6700.0,      0.0 }
         };
 
-
-
         static public double PriceOfFlat(Flat flat, Flats[] flats, int size_massive)                         //цена квартиры относительно другого массива квартир
         {
             for (int i = 0; i < size_massive; i++)
@@ -173,29 +173,26 @@ namespace CalcPriceOfFlat
         }
         static public double PriceOfFlat(Flat flat, Flats flats)                         //цена квартиры, тестовая функция
         {
-
             CorrectPrice(flat, flats);
 
             return flats.Price;
         }
         static public void CorrectPrice(Flat flat, Flats flats)
         {
-            Console.WriteLine(flats.Price / flats.ApartmentArea + " до всех корректировок");
-            Console.WriteLine(CorrectTorg(flats) + " торг");
-            Console.WriteLine(CorrectOfApartmentArea(flat, flats) + " корректировка на площадь жилья");
-            Console.WriteLine(CorrectOfDistanseFromMetroStation(flat, flats) + " корректировка на время от метро");
-            Console.WriteLine(CorrectFloor(flat, flats) + " корректировка на этаж");
-            Console.WriteLine(CorrectCitchen(flat, flats) + " корректировка на площадь кухни");
-            Console.WriteLine(CorrectBalcon(flat, flats) + " корректировка на наличие балкона");
-            Console.WriteLine(CorrectOfRepair(flat, flats) + " корректировка на ремонт");
-
+            Console.WriteLine(CorrectTorg(flats));
+            Console.WriteLine(CorrectOfApartmentArea(flat, flats));
+            Console.WriteLine(CorrectOfDistanseFromMetroStation(flat, flats));
+            Console.WriteLine(CorrectFloor(flat, flats));
+            Console.WriteLine(CorrectCitchen(flat, flats));
+            Console.WriteLine(CorrectBalcon(flat, flats));
+            Console.WriteLine(CorrectOfRepair(flat, flats));
         }
 
         /*Функции корректировки стоиомости подобранных квартир*/
         static private double CorrectTorg(Flats flats)
         {
-            flats.weightprocent += (float)4.5;
-            flats.Price -= flats.Price / 100 * 4.5;
+            flats.weightprocent += Math.Abs((float)torg);
+            flats.Price -= flats.Price / 100 * torg;
             return flats.Price / flats.ApartmentArea;
         }
         static private double CorrectFloor(Flat flat, Flats flats)                         //корректировка по этажам
@@ -211,7 +208,7 @@ namespace CalcPriceOfFlat
             else j = 1;//если не 1 и не последний этаж то значит средний этаж
 
             flats.Price += (flats.Price / 100 * floor[i, j]);
-            flats.weightprocent += (float)floor[i, j];
+            flats.weightprocent += Math.Abs((float)floor[i, j]);
 
             return flats.Price / flats.ApartmentArea;
         }
@@ -220,16 +217,16 @@ namespace CalcPriceOfFlat
             /*Для того, чтобы работало, сделать на 1 меньше i при срабатывании условия*/
             int i = -1;
             int j = -1;
-            if (flat.KitchentArea < kitchenArea[1,0]) i = 1;
+            if (flat.KitchentArea < kitchenArea[1, 0]) i = 1;
             else if (flat.KitchentArea >= kitchenArea[1, 0] && flat.KitchentArea < kitchenArea[2, 0]) i = 2;
             else if (flat.KitchentArea >= kitchenArea[2, 0] && flat.KitchentArea < kitchenArea[3, 0]) i = 3;
-
+            else i = 3;
             if (flats.KitchentArea < kitchenArea[0, 1]) j = 1;
             else if (flats.KitchentArea >= kitchenArea[0, 1] && flats.KitchentArea < kitchenArea[0, 2]) j = 2;
             else if (flats.KitchentArea >= kitchenArea[0, 2] && flats.KitchentArea < kitchenArea[0, 3]) j = 3;
-
+            else i = 3;
             flats.Price += flats.Price / 100 * kitchenArea[i, j];
-            flats.weightprocent += (float)kitchenArea[i, j];
+            flats.weightprocent += Math.Abs((float)kitchenArea[i, j]);
 
             return flats.Price / flats.ApartmentArea;
         }
@@ -240,13 +237,13 @@ namespace CalcPriceOfFlat
                 if (!flats.balcony)
                 {
                     flats.Price += flats.Price / 100 * balcon[1, 0];//если балкон есть в оцениваемой квартире, но нет в эталоне
-                    flats.weightprocent += (float)balcon[1, 0];
+                    flats.weightprocent += Math.Abs((float)balcon[1, 0]);
                 }
             if (!flat.balcony)
                 if (flats.balcony)
                 {
                     flats.Price -= flats.Price / 100 * balcon[0, 1];//если балкона нет в оцениваемой квартире, но есть в эталоне
-                    flats.weightprocent += (float)balcon[0, 1];
+                    flats.weightprocent += Math.Abs((float)balcon[0, 1]);
                 }
             return flats.Price / flats.ApartmentArea;
         }
@@ -258,15 +255,15 @@ namespace CalcPriceOfFlat
             int j = -1;
 
             if (flat.repair == "Без отделки" || flat.repair == "без отделки") i = 1;
-            else if (flat.repair == "Эконом" || flat.repair == "эконом") i = 2;
-            else if (flat.repair == "Улучшенный" || flat.repair == "улучшенный") i = 3;
+            else if (flat.repair == "Эконом" || flat.repair == "эконом" || flat.repair == "Муниципальный ремонт") i = 2;
+            else if (flat.repair == "Улучшенный" || flat.repair == "улучшенный" || flat.repair == "современная отделка") i = 3;
 
             if (flats.repair == "Без отделки" || flat.repair == "без отделки") j = 1;
-            else if (flats.repair == "Эконом" || flat.repair == "эконом") j = 2;
-            else if (flats.repair == "Улучшенный" || flat.repair == "улучшенный") j = 3;
+            else if (flats.repair == "Эконом" || flat.repair == "эконом" || flats.repair == "Муниципальный ремонт") j = 2;
+            else if (flats.repair == "Улучшенный" || flat.repair == "улучшенный" || flats.repair == "современная отделка") j = 3;
 
             double priceLocal = FUNCm2(flats.ApartmentArea, flats.Price);
-            flats.weightprocent += ((float)repair[i, j] / (float)priceLocal) * 100f;
+            flats.weightprocent += Math.Abs((float)repair[i, j] / (float)priceLocal) * 100f;
             priceLocal += repair[i, j];
             flats.Price = FUNCprice(priceLocal, flats.ApartmentArea);
 
@@ -293,7 +290,7 @@ namespace CalcPriceOfFlat
             else if (flats.ApartmentArea > area[0, 5]) j = 6;
 
             flats.Price += (flats.Price / 100 * area[i, j]);
-            flats.weightprocent += (float)area[i, j];
+            flats.weightprocent +=Math.Abs((float)area[i, j]);
 
             return flats.Price / flats.ApartmentArea;
         }
@@ -316,7 +313,7 @@ namespace CalcPriceOfFlat
             else if (flats.DistanceFromMetroStation >= distance[0, 5] && flats.DistanceFromMetroStation < distance[0, 6]) j = 6;
 
             flats.Price += (flats.Price / 100 * distance[i, j]);
-            flats.weightprocent += (float)distance[i, j];
+            flats.weightprocent += Math.Abs((float)distance[i, j]);
 
             return flats.Price / flats.ApartmentArea;
         }

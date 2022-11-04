@@ -91,8 +91,12 @@ class avito():
 
             try:
                 # Получение информации о квартире
-                apartment_about = soup.find('div', class_="style-item-view-block-SEFaY")
-                apartment_about = apartment_about.find_all('li', class_="params-paramsList__item-appQw")
+                apartment_about = soup.find_all('div', class_="style-item-view-block-SEFaY")
+                for div in apartment_about:
+                    temp = div.find_all('li', class_="params-paramsList__item-appQw")
+                    if (len(temp) != 0): 
+                        apartment_about = temp
+                        break
                 for item in apartment_about:
                     item_split = item.text.split(":")
 
@@ -111,27 +115,27 @@ class avito():
                             if (item.text.lower() == "балкон") or (item.text.lower() == "лоджия"): balcony = True
                             else: balcony = False
                         case "Отделка" | "Ремонт":
-                            # condition = item_split[1].lstrip()
                             if (item_split[1] == " чистовая") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
                             elif (item_split[1] == " косметический") or (item_split[1] == " евро"): condition = "муниципальный ремонт"
                             elif (item_split[1] == " предчистовая") or (item_split[1] == " без отделки") or (item_split[1] == " требует ремонта"): condition = "без отделки"
-                        # case "Ремонт":
-                            # if (item_split[1] == " требует ремонта"): condition = "без отделки"
-                            # elif (item_split[1] == " евро") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
-                            # elif (item_split[1] == " ="): condition = "муниципальный ремонт"
-                if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
-                    count_skiped_apartment += 1
-                    continue
             except Exception as ex:
                 print(f"Error: {ex}")
                 print(soup)
                 print(f"квартира {link}")
                 continue
-            
+            if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
+                # print(f"skip because: rooms: {(rooms is None)}     apatments_area: {(apatments_area is None)}     kitchen_area: {(kitchen_area is None)}    apartment_floor: {(apartment_floor is None)}     house_floors: {(house_floors is None)}     condition: {(condition is None)}")
+                count_skiped_apartment += 1
+                continue
+
 
             # Получение информации о доме
             house_about = soup.find('div', class_="style-item-params-McqZq")
-            house_about = house_about.find_all("li", class_="style-item-params-list-item-aXXql")
+            for div in house_about:
+                    temp = div.find_all("li", class_="style-item-params-list-item-aXXql")
+                    if (len(temp) != 0): 
+                        house_about = temp
+                        break
             for item in house_about:
                 item_split = item.text.split(":")
 
@@ -148,6 +152,7 @@ class avito():
                         elif (item_split[1] == "\xa0кирпичный"): material = 2
                         elif (item_split[1] == "\xa0панельный"): material = 3
             if ((segment is None) or (material is None)):
+                # print(f"skip because: segment: {(segment is None)}     material: {(material is None)}")
                 count_skiped_apartment += 1
                 continue
 
@@ -167,12 +172,14 @@ class avito():
                     undeground_minutes = int(ceil((int(undeground_minutes[0]) + int(undeground_minutes[1])) / 2))
                 else:
                     undeground_minutes = undeground_minutes.split(" ")[1]
-                if ((address is None) or (undeground_name is None) or (undeground_minutes is None)):
-                    count_skiped_apartment += 1
-                    continue
             except Exception as ex:
                 print(f"Error: {ex}")
                 print(f"квартира {link}")
+            if ((address is None) or (undeground_name is None) or (undeground_minutes is None)):
+                count_skiped_apartment += 1
+                # print(f"skip because: adress: {(address is None)}     undeground_name: {(undeground_name is None)}     undeground_minutes: {(undeground_minutes is None)}")
+                continue
+
             # segment
             # 1 - Новостройка
             # 2 - современное жилье
@@ -203,4 +210,4 @@ class avito():
 
         pprint.pprint(apartments_info)
         print(f"Всего квартир: {len(links)}\nОбработано {count_apartment_done}\nПропущенно {count_skiped_apartment}")
-        return dumps(apartments_info)
+        return apartments_info

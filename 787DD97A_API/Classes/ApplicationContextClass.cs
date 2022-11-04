@@ -13,29 +13,24 @@ namespace _787DD97A_API.Classes
             //Database.EnsureCreated();
         }
 
-        public DbSet<UserDevice>? UserDevice { get; set; }
-        public DbSet<User>? User { get; set; }
+        public DbSet<UserDevice>? UserDevices { get; set; }
+        public DbSet<User>? Users { get; set; }
         public DbSet<Apartment>? Apartments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<UserN>(entity =>
-            //{
-            //    entity.HasIndex(e => e.Login).IsUnique();
-            //});
-            //builder.Entity<UserN>(entity =>
-            //{
-            //    entity.HasIndex(e => e.Phone).IsUnique();
-            //});
-
-            //builder.Entity<Group>(entity =>
-            //{
-            //    entity.HasIndex(e => e.GroupName).IsUnique();
-            //});
-            //builder.Entity<UserDevice>(entity =>
-            //{
-            //    entity.HasIndex(e => e.DeviceId).IsUnique();
-            //});
+            builder.Entity<User>(entity =>
+            {
+                entity.HasIndex(e => e.Login).IsUnique();
+            });
+            builder.Entity<User>(entity =>
+            {
+                entity.HasIndex(e => e.Phone).IsUnique();
+            });
+            builder.Entity<UserDevice>(entity =>
+            {
+                entity.HasIndex(e => e.DeviceId).IsUnique();
+            });
         }
     }
 }

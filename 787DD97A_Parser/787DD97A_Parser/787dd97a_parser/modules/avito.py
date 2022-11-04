@@ -60,7 +60,7 @@ class avito():
 
         return apartment_links
 
-    def get_apartments(self, links:list):
+    def get_apartments(self, links:list) -> None:
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
         count_skiped_apartment = 0
@@ -210,4 +210,3 @@ class avito():
 
         pprint.pprint(apartments_info)
         print(f"Всего квартир: {len(links)}\nОбработано {count_apartment_done}\nПропущенно {count_skiped_apartment}")
-        return apartments_info

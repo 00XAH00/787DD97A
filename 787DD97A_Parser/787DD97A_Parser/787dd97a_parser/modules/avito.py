@@ -2,8 +2,8 @@ import datetime
 import time, threading, pprint
 from bs4 import BeautifulSoup
 from math import ceil
-from json import dumps
-# from random import choice
+# from json import dumps
+from modules.db import db
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -13,10 +13,11 @@ from selenium.webdriver.common.by import By
 
 class avito():
     def __init__(self):
+        self.database = db()
         self.URL = "https://www.avito.ru/moskva/kvartiry/prodam/novostroyka-ASgBAQICAUSSA8YQAUDmBxSOUg"
 
         self.opts = Options()
-        # self.opts.add_argument("--headless")
+        self.opts.add_argument("--headless")
         self.opts.add_argument(f"user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36")
         preferences = {
             "webrtc.ip_handling_policy" : "disable_non_proxied_udp",
@@ -188,7 +189,7 @@ class avito():
             # 1 - монолитный
             # 2 - кирпичный
             # 3 - панельный
-            apartments_info.update({
+            apartments_info = {
                 link.split("/")[-1]: {
                     "adress": address,
                     "undeground": undeground_name,
@@ -203,7 +204,7 @@ class avito():
                     "balcony": balcony,
                     "condition": condition
                 }
-            })
+            }
             count_apartment_done += 1
 
         driver.quit()

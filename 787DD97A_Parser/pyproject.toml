@@ -13,6 +13,8 @@ bs4 = "^0.0.1"
 lxml = "^4.9.1"
 selenium = "^4.5.0"
 schedule = "^1.1.0"
+pymysql = "^1.0.2"
+python-dotenv = "^0.21.0"
 
 
 [build-system]

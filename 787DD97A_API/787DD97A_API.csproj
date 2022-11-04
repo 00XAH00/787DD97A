@@ -26,9 +26,11 @@
     <None Remove="Classes\" />
     <None Remove="Models\" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Models\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

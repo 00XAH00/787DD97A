@@ -404,6 +404,3 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
-
-# Database migrations from EntityFramework
-*/Migrations

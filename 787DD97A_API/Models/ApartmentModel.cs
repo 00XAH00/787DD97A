@@ -16,6 +16,8 @@ namespace _787DD97A_API.Models
         public uint Kitchen_area { get; set; }
         public bool Balcony { get; set; }
         public string Condition { get; set; }
+        public string Link { get; set; }
+
     }
 }
 

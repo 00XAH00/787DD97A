@@ -61,7 +61,7 @@ class avito():
 
         return apartment_links
 
-    def get_apartments(self, links:list) -> None:
+    def get_apartments(self, links:list) -> dict:
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
         apartments_info = {}
         count_skiped_apartment = 0
@@ -190,20 +190,19 @@ class avito():
             # 2 - кирпичный
             # 3 - панельный
             apartments_info = {
-                link.split("/")[-1]: {
-                    "adress": address,
-                    "undeground": undeground_name,
-                    "undeground_minutes": undeground_minutes,
-                    "rooms": rooms,
-                    "segment": segment,
-                    "house_floors": house_floors,
-                    "material": material,
-                    "apartment_floor": apartment_floor,
-                    "apatments_area": apatments_area,
-                    "kitchen_area": kitchen_area,
-                    "balcony": balcony,
-                    "condition": condition
-                }
+                "link": link.split("/")[-1],
+                "adress": address,
+                "undeground": undeground_name,
+                "undeground_minutes": undeground_minutes,
+                "rooms": rooms,
+                "segment": segment,
+                "house_floors": house_floors,
+                "material": material,
+                "apartment_floor": apartment_floor,
+                "apatments_area": apatments_area,
+                "kitchen_area": kitchen_area,
+                "balcony": balcony,
+                "condition": condition
             }
             count_apartment_done += 1
 

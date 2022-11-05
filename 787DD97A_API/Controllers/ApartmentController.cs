@@ -22,10 +22,10 @@ namespace _787DD97A_API.Controllers
         }
 
         // GET: api/values
-        [HttpGet]
-        public IQueryable<Apartment> Test()
+        [HttpGet("Get")]
+        public IQueryable<Apartment> Test(string UndegroundName)
         {
-            var Apartments = _context.Apartments.Where(u => u.Undeground.Equals("Аминьевская"));
+            var Apartments = _context.Apartments.Where(u => u.Undeground.Equals(UndegroundName));
 
             foreach (Apartment u in Apartments)
             {

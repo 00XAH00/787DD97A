@@ -17,6 +17,7 @@ namespace _787DD97A_API.Models
         public bool Balcony { get; set; }
         public string Condition { get; set; }
         public string Link { get; set; }
+        public UInt64 Price { get; set; }
 
     }
 }

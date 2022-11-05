@@ -14,6 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,10 +28,13 @@
     <None Remove="Models\" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Migrations\" />
+    <None Remove="Controllers\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Models\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

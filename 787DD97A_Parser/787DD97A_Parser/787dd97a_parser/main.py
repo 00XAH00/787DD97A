@@ -9,7 +9,7 @@ av = avito()
 
 def AvitoParsing():
     print("Start Parsing")
-    links = av.get_links(5)
+    links = av.get_links(1)
     print(f"Квартир для обработки: {len(links)}")
     time.sleep(120)
     start_time = time.time()
@@ -23,3 +23,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # AvitoParsing()

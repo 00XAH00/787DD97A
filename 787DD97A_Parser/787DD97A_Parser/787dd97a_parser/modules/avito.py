@@ -14,7 +14,8 @@ from selenium.webdriver.common.by import By
 class avito():
     def __init__(self):
         self.database = db()
-        self.URL = "https://www.avito.ru/moskva/kvartiry/prodam/novostroyka-ASgBAQICAUSSA8YQAUDmBxSOUg"
+        self.URLS = ["https://www.avito.ru/moskva/kvartiry/prodam/novostroyka-ASgBAQICAUSSA8YQAUDmBxSOUg", "https://www.avito.ru/moskva/kvartiry/prodam/vtorichka-ASgBAQICAUSSA8YQAUDmBxSMUg"]
+        # self.URLS = ["https://www.avito.ru/moskva/kvartiry/prodam/vtorichka-ASgBAQICAUSSA8YQAUDmBxSMUg"]
 
         self.opts = Options()
         self.opts.add_argument("--headless")
@@ -29,17 +30,19 @@ class avito():
         webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
         self.caps = DesiredCapabilities().CHROME
         self.caps["pageLoadStrategy"] = "eager"
+
         self.driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
 
     def get_links(self, devision:int) -> list:
         apartment_links = []
-        def thread_links_get(start:int, end:int):
+        def thread_links_get(start:int, end:int, url:str):
             driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
             for page in range(start, end):
-                driver.get(f"{self.URL}?p={page}") # Получаем нужную страницу
+                # Получаем нужную страницу
+                driver.get(f"{url}?p={page}")
                 source = driver.page_source
                 soup = BeautifulSoup(source, 'lxml')
-
+                # Получение ссылки на квартиры
                 apartments_div = soup.find_all('div', class_='iva-item-content-rejJg') # Находим блок с квартирой
                 for item in apartments_div:
                     link = item.find_all('a', class_='link-link-MbQDP')[0].get('href') # Поулчаем ссылку на объявление
@@ -47,13 +50,15 @@ class avito():
                 time.sleep(0.3)
             driver.quit()
 
-        self.driver.get(self.URL)
-        last_page = int(self.driver.find_elements(By.CLASS_NAME, 'pagination-item-JJq_j')[-2].text) # находим последнюю страницу
-        self.driver.quit()
+        # Получение ссылок на новые и бу квартиры
+        for apurl in self.URLS:
+            self.driver.get(apurl)
+            last_page = int(self.driver.find_elements(By.CLASS_NAME, 'pagination-item-JJq_j')[-2].text) # находим последнюю страницу
 
-        thread_first = threading.Thread(target=thread_links_get, args=(1, (int(last_page/devision))+1))
-        thread_first.start()
-        thread_first.join()
+            thread_first = threading.Thread(target=thread_links_get, args=(1, (int(last_page/devision))+1, apurl))
+            thread_first.start()
+            thread_first.join()
+        self.driver.quit()
 
         # thread_second = threading.Thread(target=thread_links_get, args=((int((last_page/devision)//2)), (int(last_page/devision)+1)))
         # thread_second.start()
@@ -63,7 +68,6 @@ class avito():
 
     def get_apartments(self, links:list) -> dict:
         driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
-        apartments_info = {}
         count_skiped_apartment = 0
         count_apartment_done = 0
         for link in links:
@@ -125,7 +129,6 @@ class avito():
                 print(f"квартира {link}")
                 continue
             if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
-                # print(f"skip because: rooms: {(rooms is None)}     apatments_area: {(apatments_area is None)}     kitchen_area: {(kitchen_area is None)}    apartment_floor: {(apartment_floor is None)}     house_floors: {(house_floors is None)}     condition: {(condition is None)}")
                 count_skiped_apartment += 1
                 continue
 
@@ -133,10 +136,10 @@ class avito():
             # Получение информации о доме
             house_about = soup.find('div', class_="style-item-params-McqZq")
             for div in house_about:
-                    temp = div.find_all("li", class_="style-item-params-list-item-aXXql")
-                    if (len(temp) != 0): 
-                        house_about = temp
-                        break
+                temp = div.find_all("li", class_="style-item-params-list-item-aXXql")
+                if (len(temp) != 0):
+                    house_about = temp
+                    break
             for item in house_about:
                 item_split = item.text.split(":")
 
@@ -153,7 +156,6 @@ class avito():
                         elif (item_split[1] == "\xa0кирпичный"): material = 2
                         elif (item_split[1] == "\xa0панельный"): material = 3
             if ((segment is None) or (material is None)):
-                # print(f"skip because: segment: {(segment is None)}     material: {(material is None)}")
                 count_skiped_apartment += 1
                 continue
 
@@ -205,6 +207,7 @@ class avito():
                 "condition": condition
             }
             count_apartment_done += 1
+            self.database.add_apartment(apartments_info)
 
         driver.quit()
 

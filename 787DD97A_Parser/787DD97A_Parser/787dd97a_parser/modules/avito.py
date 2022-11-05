@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from math import ceil
 # from json import dumps
 from modules.db import db
+from re import sub
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -15,7 +16,6 @@ class avito():
     def __init__(self):
         self.database = db()
         self.URLS = ["https://www.avito.ru/moskva/kvartiry/prodam/novostroyka-ASgBAQICAUSSA8YQAUDmBxSOUg", "https://www.avito.ru/moskva/kvartiry/prodam/vtorichka-ASgBAQICAUSSA8YQAUDmBxSMUg"]
-        # self.URLS = ["https://www.avito.ru/moskva/kvartiry/prodam/vtorichka-ASgBAQICAUSSA8YQAUDmBxSMUg"]
 
         self.opts = Options()
         self.opts.add_argument("--headless")
@@ -29,7 +29,6 @@ class avito():
         self.opts.add_argument("--disable-blink-features=AutomationControlled")
         webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
         self.caps = DesiredCapabilities().CHROME
-        self.caps["pageLoadStrategy"] = "eager"
 
         self.driver = webdriver.Chrome('/Users/xah/Projects/787DD97A_calc/787DD97A_Parser/787DD97A_Parser/787dd97a_parser/modules/chromedriver', options=self.opts, desired_capabilities=self.caps)
 
@@ -93,9 +92,11 @@ class avito():
             address = None
             undeground_minutes = None
             undeground_name = None
+            price = None
 
+
+            # Получение информации о квартире
             try:
-                # Получение информации о квартире
                 apartment_about = soup.find_all('div', class_="style-item-view-block-SEFaY")
                 for div in apartment_about:
                     temp = div.find_all('li', class_="params-paramsList__item-appQw")
@@ -123,42 +124,41 @@ class avito():
                             if (item_split[1] == " чистовая") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
                             elif (item_split[1] == " косметический") or (item_split[1] == " евро"): condition = "муниципальный ремонт"
                             elif (item_split[1] == " предчистовая") or (item_split[1] == " без отделки") or (item_split[1] == " требует ремонта"): condition = "без отделки"
-            except Exception as ex:
-                print(f"Error: {ex}")
-                print(soup)
-                print(f"квартира {link}")
-                continue
+            except: continue
             if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
                 count_skiped_apartment += 1
+                # print(f"link {link}     rooms: {(rooms is None)}    apatments_area: {(apatments_area is None)}  kitchen_area: {(kitchen_area is None)}   apartment_floor: {(apartment_floor is None)}   house_floors: {(house_floors is None)}    condition:{(condition is None)}")
                 continue
 
-
             # Получение информации о доме
-            house_about = soup.find('div', class_="style-item-params-McqZq")
-            for div in house_about:
-                temp = div.find_all("li", class_="style-item-params-list-item-aXXql")
-                if (len(temp) != 0):
-                    house_about = temp
-                    break
-            for item in house_about:
-                item_split = item.text.split(":")
+            try:
+                house_about = soup.find('div', class_="style-item-params-McqZq")
+                for div in house_about:
+                    temp = div.find_all("li", class_="style-item-params-list-item-aXXql")
+                    if (len(temp) != 0):
+                        house_about = temp
+                        break
+                for item in house_about:
+                    item_split = item.text.split(":")
 
-                match item_split[0]:
-                    case "Название новостройки":
-                        segment = 1
-                    case "Год постройки":
-                        year = int(item_split[1])
-                        if (year > int(datetime.date.today().year)-5): segment = 1
-                        elif (year >= 2000): segment = 2
-                        elif  (year < 2000): segment = 3
-                    case "Тип дома":
-                        if (item_split[1] == "\xa0монолитно-кирпичный") or (item_split[1] == "\xa0монолитный"): material = 1
-                        elif (item_split[1] == "\xa0кирпичный"): material = 2
-                        elif (item_split[1] == "\xa0панельный"): material = 3
+                    match item_split[0]:
+                        case "Название новостройки":
+                            segment = 1
+                        case "Год постройки":
+                            year = int(item_split[1])
+                            if (year > int(datetime.date.today().year)-5): segment = 1
+                            elif (year >= 2000): segment = 2
+                            elif  (year < 2000): segment = 3
+                        case "Тип дома":
+                            if (item_split[1] == "\xa0монолитно-кирпичный") or (item_split[1] == "\xa0монолитный"): material = 1
+                            elif (item_split[1] == "\xa0кирпичный"): material = 2
+                            elif (item_split[1] == "\xa0панельный"): material = 3
+            except: continue
             if ((segment is None) or (material is None)):
                 count_skiped_apartment += 1
                 continue
 
+            # Получение информации о местоположении
             try:
                 # Получение блока с информацей о метро
                 position = soup.find('div', class_="style-item-address-KooqC")
@@ -175,12 +175,24 @@ class avito():
                     undeground_minutes = int(ceil((int(undeground_minutes[0]) + int(undeground_minutes[1])) / 2))
                 else:
                     undeground_minutes = undeground_minutes.split(" ")[1]
-            except Exception as ex:
-                print(f"Error: {ex}")
-                print(f"квартира {link}")
+            except: continue
             if ((address is None) or (undeground_name is None) or (undeground_minutes is None)):
                 count_skiped_apartment += 1
                 # print(f"skip because: adress: {(address is None)}     undeground_name: {(undeground_name is None)}     undeground_minutes: {(undeground_minutes is None)}")
+                continue
+
+            # Получение стоимости квартиры
+            try:
+                price = soup.find_all('div', class_="style-item-price-PuQ0I")
+                for div in price:
+                    temp = div.find_all('span', class_="js-item-price")
+                    if (len(temp) != 0):
+                        price = sub('\xa0', '', temp[0].text)
+                        price = int(price)
+                        break
+            except: continue
+            if (price is None):
+                count_skiped_apartment +=1
                 continue
 
             # segment
@@ -204,12 +216,11 @@ class avito():
                 "apatments_area": apatments_area,
                 "kitchen_area": kitchen_area,
                 "balcony": balcony,
-                "condition": condition
+                "condition": condition,
+                "price": price
             }
             count_apartment_done += 1
             self.database.add_apartment(apartments_info)
 
         driver.quit()
-
-        pprint.pprint(apartments_info)
         print(f"Всего квартир: {len(links)}\nОбработано {count_apartment_done}\nПропущенно {count_skiped_apartment}")

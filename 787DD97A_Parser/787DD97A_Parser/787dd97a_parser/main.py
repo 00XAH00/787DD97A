@@ -22,5 +22,5 @@ def main():
         schedule.every().day.at("00:00").do(AvitoParsing)
 
 if __name__ == "__main__":
-    main()
-    # AvitoParsing()
+    # main()
+    AvitoParsing()

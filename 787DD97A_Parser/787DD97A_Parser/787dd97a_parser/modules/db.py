@@ -23,8 +23,8 @@ class db():
             try:
                 with connection.cursor() as cursor:
                     cursor.execute('INSERT INTO `Apartments` ' +
-                    '(`Adress`, `Undeground`, `Undeground_minutes`, `Rooms`, `Segment`, `House_floors`, `Material`, `Apartment_floor`, `Kitchen_area`, `Balcony`, `Condition`, `Link`, `Apatments_area`) ' +
-                    f'VALUES (\'{apartment.get("adress")}\', \'{apartment.get("undeground")}\', {apartment.get("undeground_minutes")}, {apartment.get("rooms")}, {apartment.get("segment")}, {apartment.get("house_floors")}, {apartment.get("material")}, {apartment.get("apartment_floor")}, {apartment.get("kitchen_area")}, {apartment.get("balcony")}, \'{apartment.get("condition")}\', \'{apartment.get("link")}\', {apartment.get("apatments_area")})')
+                    '(`Adress`, `Undeground`, `Undeground_minutes`, `Rooms`, `Segment`, `House_floors`, `Material`, `Apartment_floor`, `Kitchen_area`, `Balcony`, `Condition`, `Link`, `Apatments_area`, `Price`) ' +
+                    f'VALUES (\'{apartment.get("adress")}\', \'{apartment.get("undeground")}\', {apartment.get("undeground_minutes")}, {apartment.get("rooms")}, {apartment.get("segment")}, {apartment.get("house_floors")}, {apartment.get("material")}, {apartment.get("apartment_floor")}, {apartment.get("kitchen_area")}, {apartment.get("balcony")}, \'{apartment.get("condition")}\', \'{apartment.get("link")}\', {apartment.get("apatments_area")}, {apartment.get("price")})')
                     connection.commit()
                     return 0
             finally:

@@ -23,12 +23,30 @@ const close_menu_btn = document.getElementById("close_menu_btn")
 menu_btn.addEventListener("click", menu_visibl)
 close_menu_btn.addEventListener("click", menu_hide)
 
-
-const button = document.querySelectorAll('.form__box-btn')
+//переключение между кнопками
+const button = document.querySelectorAll('.segment-btn')
 button.forEach((elem) => {
 
     elem.onclick = () => {
-    document.querySelector('.form__box-btn.active')?.classList.remove('active')
+    document.querySelector('.form__box-btn.segment-btn.active')?.classList.remove('active')
+    elem.classList.add('active')
+  }
+})
+
+const button2 = document.querySelectorAll('.walls-btn')
+button2.forEach((elem) => {
+
+    elem.onclick = () => {
+    document.querySelector('.form__box-btn.walls-btn.active')?.classList.remove('active')
+    elem.classList.add('active')
+  }
+})
+
+const button3 = document.querySelectorAll('.finishing-btn')
+button3.forEach((elem) => {
+
+    elem.onclick = () => {
+    document.querySelector('.form__box-btn.finishing-btn.active')?.classList.remove('active')
     elem.classList.add('active')
   }
 })
@@ -43,6 +61,7 @@ roomInputSlider.oninput = (()=>{
 
 const floorSlideValue = document.getElementById("floor-span");
 const floorInputSlider = document.getElementById("floor-input");
+
 floorInputSlider.oninput = (()=>{
     let value = floorInputSlider.value;
     floorSlideValue.textContent = value;
@@ -51,6 +70,7 @@ floorInputSlider.oninput = (()=>{
 
 const flatSlideValue = document.getElementById("flat-span");
 const flatInputSlider = document.getElementById("flat-input");
+
 flatInputSlider.oninput = (()=>{
     let value = flatInputSlider.value;
     flatSlideValue.textContent = value;
@@ -59,6 +79,7 @@ flatInputSlider.oninput = (()=>{
 
 const kitchenSlideValue = document.getElementById("kitchen-span");
 const kitchenInputSlider = document.getElementById("kitchen-input");
+
 kitchenInputSlider.oninput = (()=>{
     let value = kitchenInputSlider.value;
     kitchenSlideValue.textContent = value;

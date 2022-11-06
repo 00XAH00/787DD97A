@@ -19,10 +19,10 @@ namespace _787DD97A_API.Classes
             _configuration = configuration;
         }
 
-        public string GenJWT(string username, int role)
+        public string GenJWT(string useremail, int role)
         {
             var claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Email, useremail),
                 new Claim(ClaimTypes.Role, role.ToString())
             };
 

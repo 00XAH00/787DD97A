@@ -24,10 +24,6 @@ namespace _787DD97A_API.Classes
                 entity.HasIndex(e => e.Email).IsUnique();
             });
 
-            builder.Entity<UserDevice>(entity =>
-            {
-                entity.HasIndex(e => e.DeviceId).IsUnique();
-            });
 
             builder.Entity<Apartment>(entity =>
             {

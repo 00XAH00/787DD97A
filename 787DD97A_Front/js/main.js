@@ -16,12 +16,47 @@ function menu_hide() {
     menu.style.left = "-100%"
 }
 
+// Убрать скролинк
+const headerbtn = document.querySelector('.header-btn');
+if (headerbtn) {
+    const headerbtn = document.querySelector('.header-btn');
+    headerbtn.addEventListener("click", function (e) {
+        document.body.classList.toggle('_lock')
+    });
+}
+
+const headerbtn__close = document.querySelector('.close-btn');
+if (headerbtn__close) {
+    const headerbtn__close = document.querySelector('.close-btn');
+    headerbtn__close.addEventListener("click", function (e) {
+        document.body.classList.toggle('_lock')
+    });
+}
+
+const headerbtn__nav = document.querySelector('.menu__list');
+if (headerbtn__nav) {
+    const headerbtn__nav = document.querySelector('.menu__list');
+    headerbtn__nav.addEventListener("click", function (e) {
+        document.body.classList.toggle('_lock')
+    });
+}
+// Убрать скролинк
+
+const popup__closeST = document.querySelector('.popup__close-ST');
+if (popup__closeST) {
+    const popup__closeST = document.querySelector('.popup__close-ST');
+    popup__closeST.addEventListener("click", function (e) {
+        document.body.classList.toggle('_lock')
+    });
+}
+
 
 const menu_btn = document.getElementById("menu_btn")
 const close_menu_btn = document.getElementById("close_menu_btn")
 
 menu_btn.addEventListener("click", menu_visibl)
 close_menu_btn.addEventListener("click", menu_hide)
+
 
 //переключение между кнопками
 const button = document.querySelectorAll('.segment-btn')

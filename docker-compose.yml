@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  787dd97a_api:
+    image: ${DOCKER_REGISTRY-}787dd97aapi
+    build:
+      context: .
+      dockerfile: 787DD97A_API/Dockerfile

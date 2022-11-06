@@ -21,12 +21,9 @@ namespace _787DD97A_API.Classes
         {
             builder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Login).IsUnique();
+                entity.HasIndex(e => e.Email).IsUnique();
             });
-            builder.Entity<User>(entity =>
-            {
-                entity.HasIndex(e => e.Phone).IsUnique();
-            });
+
             builder.Entity<UserDevice>(entity =>
             {
                 entity.HasIndex(e => e.DeviceId).IsUnique();

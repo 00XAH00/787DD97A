@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace _787DD97A_API.Models
 {
@@ -12,12 +12,8 @@ namespace _787DD97A_API.Models
         public string? FirstName { get; set; }
         [MaxLength(30)]
         public string? SecondName { get; set; }
-        [MaxLength(30)]
-        public string? Patronymic { get; set; }
-        [MaxLength(17)]
-        public string? Phone { get; set; }
-        [MaxLength(100)]
-        public string? Login { get; set; }
+        [MaxLength(255)]
+        public string? Email { get; set; }
         [MaxLength(255)]
         public string? Password { get; set; }
 

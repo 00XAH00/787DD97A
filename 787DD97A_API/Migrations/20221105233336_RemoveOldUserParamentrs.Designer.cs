@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _787DD97A_API.Classes;
 
@@ -10,9 +11,10 @@ using _787DD97A_API.Classes;
 namespace _787DD97A_API.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221105233336_RemoveOldUserParamentrs")]
+    partial class RemoveOldUserParamentrs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace _787DD97A_API.Migrations
                     b.Property<uint>("Material")
                         .HasColumnType("int unsigned");
 
-                    b.Property<ulong>("Price")
-                        .HasColumnType("bigint unsigned");
-
                     b.Property<uint>("Rooms")
                         .HasColumnType("int unsigned");
 
@@ -86,8 +85,8 @@ namespace _787DD97A_API.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(17)
+                        .HasColumnType("varchar(17)");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(30)

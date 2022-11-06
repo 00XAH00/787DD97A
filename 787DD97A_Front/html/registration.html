@@ -45,19 +45,28 @@
           <div class="form">
             <div class="title">Авторизация</div>
             <div>
-              <label for="email__input" class="login__lable" id="email">
-                <input class="login__input" type="email" id="email__input" required>
+                <label for="name__input" class="login__lable" id="name">
+                  <input class="login__input" type="text" id="name__input" required>
+                  <span class="login__span">Имя</span>
+                </label>
+              </div>
+              <div>
+                <label for="surname__input" class="login__lable" id="surname">
+                  <input class="login__input" type="text" id="surname__input" required>
+                  <span class="login__span">Фамилия</span>
+                </label>
+              </div>
+            <div>
+              <label for="email-input" class="login__lable" id="email">
+                <input class="login__input" type="email" id="email-input" required>
                 <span class="login__span">Email</span>
               </label>
             </div>
-            <label for="password__input" class="login__lable" id="password">
-              <input class="login__input" type="password" pattern="[0-9a-fA-F]{4,8}" id="password__input" required>
+            <label for="password-input" class="login__lable" id="password">
+              <input class="login__input" type="password" pattern="[0-9a-fA-F]{4,8}" id="password-input" required>
               <span class="login__span">Password</span>
             </label>
             <button class="button" type="submit">Войти</button>
-            <a href="/html/registration.html">
-              <span class="registr__text">Если у вас нет аккаунта, нажмите сюда</span>
-            </a>
           </div>
         </div>
       </form>
@@ -100,6 +109,6 @@
     
     
       </footer>
-      <script src="/js/login.js"></script>
+      <script src="/js/registration.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ const close_menu_btn = document.getElementById("close_menu_btn")
 menu_btn.addEventListener("click", menu_visibl)
 close_menu_btn.addEventListener("click", menu_hide)
 
+
 //переключение между кнопками
 const button = document.querySelectorAll('.segment-btn')
 button.forEach((elem) => {

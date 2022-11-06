@@ -14,6 +14,8 @@ body{
   font-weight: 400;
 }
 
+body._lock {overflow: hidden;}
+
 .logotip{
   background-image: url("../images/checklogotip.png");
   display: inline-block;
@@ -463,9 +465,6 @@ input:checked[type="checkbox"]::before{
  transition: all .3s;
 }
 
-.table tr:hover{
-  background-color: #ccc;
-}
 
 .table td{
   border: 1px solid rgb(236, 236, 236);
@@ -481,7 +480,7 @@ input:checked[type="checkbox"]::before{
     background-image: url("../images/close.svg");
     /* margin-left: 1rem;  */
     border: none;
-    background-position: center 17px;
+    background-position: center 8px;
     background-repeat: no-repeat;
     background-size: 25px 25px;
     opacity: .6;

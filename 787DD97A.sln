@@ -5,6 +5,13 @@ VisualStudioVersion = 25.0.1703.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcForPriceFlat", "787DD97A\CalcForPriceFlat.csproj", "{FB665B8E-5217-40CB-AE9D-220AB1EF0F17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "787DD97A_API", "787DD97A_API\787DD97A_API.csproj", "{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{34570907-E9FF-42D6-A3D6-7217C8554949}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{FB665B8E-5217-40CB-AE9D-220AB1EF0F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB665B8E-5217-40CB-AE9D-220AB1EF0F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB665B8E-5217-40CB-AE9D-220AB1EF0F17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

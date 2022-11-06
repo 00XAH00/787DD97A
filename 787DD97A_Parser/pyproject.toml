@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "787dd97a-parser"
+version = "0.1.0"
+description = ""
+authors = ["00XAH00 <pxaxulin@gmail.com>"]
+readme = "README.md"
+packages = [{include = "787dd97a_parser"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.28.1"
+bs4 = "^0.0.1"
+lxml = "^4.9.1"
+selenium = "^4.5.0"
+schedule = "^1.1.0"
+pymysql = "^1.0.2"
+python-dotenv = "^0.21.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

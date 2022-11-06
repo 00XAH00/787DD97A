@@ -56,11 +56,21 @@ namespace CalcForPriceFlat
 
                 flat[i].Rooms = Convert.ToUInt16(Rooms);
 
+
+                object Segment = ws.Cell(2 + i, 3).Value;
+
+                flat[i].Segment = Convert.ToUInt16(Segment);
+
+
+
                 object House_floors = ws.Cell(2 + i, 4).Value;
                
                 flat[i].House_floors = Convert.ToUInt16(House_floors);
                 
                 
+                object Material = ws.Cell(2 + i, 5).Value;
+
+                flat[i].Material = Convert.ToUInt16(Material);
 
                 object Apartment_floor = ws.Cell(2 + i, 6).Value;
                

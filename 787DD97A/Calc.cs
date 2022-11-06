@@ -138,6 +138,8 @@ namespace CalcPriceOfFlat
             { 20100.0,   6700.0,      0.0 }
         };
 
+        
+
         static public double PriceOfFlat(Flat flat, Flats[] flats, int size_massive)                         //цена квартиры относительно другого массива квартир
         {
             for (int i = 0; i < size_massive; i++)
@@ -224,7 +226,7 @@ namespace CalcPriceOfFlat
             if (flats.KitchentArea < kitchenArea[0, 1]) j = 1;
             else if (flats.KitchentArea >= kitchenArea[0, 1] && flats.KitchentArea < kitchenArea[0, 2]) j = 2;
             else if (flats.KitchentArea >= kitchenArea[0, 2] && flats.KitchentArea < kitchenArea[0, 3]) j = 3;
-            if (flats.KitchentArea > kitchenArea[0, 3]) j = 3;
+            if (flats.KitchentArea >= kitchenArea[0, 3]) j = 3;
             flats.Price += flats.Price / 100 * kitchenArea[i, j];
             flats.weightprocent += Math.Abs((float)kitchenArea[i, j]);
 
@@ -257,11 +259,11 @@ namespace CalcPriceOfFlat
             if (flat.repair == "Без отделки" || flat.repair == "без отделки") i = 0;
             else if (flat.repair == "Эконом" || flat.repair == "эконом" || flat.repair == "Муниципальный ремонт") i = 1;
             else if (flat.repair == "Улучшенный" || flat.repair == "улучшенный" || flat.repair == "современная отделка") i = 2;
-
+            else i = 0;
             if (flats.repair == "Без отделки" || flats.repair == "без отделки") j = 0;
             else if (flats.repair == "Эконом" || flats.repair == "эконом" || flats.repair == "Муниципальный ремонт") j = 1;
             else if (flats.repair == "Улучшенный" || flats.repair == "улучшенный" || flats.repair == "современная отделка") j = 2;
-
+            else j = 0;
             double priceLocal = FUNCm2(flats.ApartmentArea, flats.Price);
             flats.weightprocent += Math.Abs((float)repair[i, j] / (float)priceLocal) * 100f;
             priceLocal += repair[i, j];

@@ -18,36 +18,63 @@ namespace _787DD97A_API.Classes
 
             for ( int i = 0; i < ApartmentsArray.Length; i++ )
             {
-                georooords.Calc_Distance(ApartmentsArray[i].Adress, apartment.Adress);
+                if( ApartmentsArray[i] != null )
                 if (Math.Abs(ApartmentsArray[i].Undeground_minutes - apartment.Undeground_minutes) <= 35
                     && ApartmentsArray[i].Segment == apartment.Segment
                     && ApartmentsArray[i].Material == apartment.Material
                     && ApartmentsArray[i].Rooms == apartment.Rooms
                     && ApartmentsArray[i].House_floors == apartment.House_floors
-                    && georooords.rasst <=0.01)
+                    )
                 {
                     CounterFlat++;
                 }
                 else
-                ApartmentsArray = DeleteForIndex(ApartmentsArray, i);//удаляем элементы с другим названием метро
+                ApartmentsArray = DeleteForIndex(ApartmentsArray, i);//удаляем элементы 
+            }
+            for (int i = 0; i < ApartmentsArray.Length; i++)
+            {
+                if (ApartmentsArray[i] != null)
+                {
+
+
+                    georooords.Calc_Distance(ApartmentsArray[i].Adress, apartment.Adress);
+                    if (georooords.rasst <= 0.01)
+                    {
+                        CounterFlat++;
+                    }
+                    else
+                        ApartmentsArray = DeleteForIndex(ApartmentsArray, i);//удаляем элементы 
+                }
+                else break;
+            }
+            int sizeArrayFlats = 0;
+            for(int i = 0; i < ApartmentsArray.Length;i++)
+            {
+                if (ApartmentsArray[i] != null) sizeArrayFlats++;
             }
 
-            Flats[] flats = new Flats[CounterFlat];
+            Flats[] flats = new Flats[sizeArrayFlats];
 
             if (ApartmentsArray.Length == 0) return flats;
 
-            for (int i = 0; i < CounterFlat; i++)
+            
+            for (int i = 0; i < sizeArrayFlats; i++)
             {
-                flats[i] = new Flats();
-                flats[i].DistanceFromMetroStation = (ushort)ApartmentsArray[i].Undeground_minutes;
-                flats[i].NumberOfStoreys = (ushort)ApartmentsArray[i].House_floors;
-                flats[i].FloorLocation = (ushort)ApartmentsArray[i].Apartment_floor;
-                flats[i].ApartmentArea = (ushort)ApartmentsArray[i].Apatments_area;
-                flats[i].KitchentArea = (ushort)ApartmentsArray[i].Kitchen_area;
-                flats[i].balcony = ApartmentsArray[i].Balcony;
-                flats[i].repair = ApartmentsArray[i].Condition;
-                flats[i].Price = ApartmentsArray[i].Price;
+                if (ApartmentsArray[i] != null)
+                {               
+                    flats[i] = new Flats();
+                    flats[i].DistanceFromMetroStation = (ushort)ApartmentsArray[i].Undeground_minutes;
+                    flats[i].NumberOfStoreys = (ushort)ApartmentsArray[i].House_floors;
+                    flats[i].FloorLocation = (ushort)ApartmentsArray[i].Apartment_floor;
+                    flats[i].ApartmentArea = (ushort)ApartmentsArray[i].Apatments_area;
+                    flats[i].KitchentArea = (ushort)ApartmentsArray[i].Kitchen_area;
+                    flats[i].balcony = ApartmentsArray[i].Balcony;
+                    flats[i].repair = ApartmentsArray[i].Condition;
+                    flats[i].Price = ApartmentsArray[i].Price;
+                }
             }
+
+       
 
             return flats;
         }
@@ -61,8 +88,11 @@ namespace _787DD97A_API.Classes
             {
                 if(i!=index)
                 {
-                    apartments[i] = ApartmentsArray[j];
-                    j++;
+                    if (ApartmentsArray[i] != null)
+                    {
+                        apartments[j] = ApartmentsArray[i];
+                        j++;
+                    }                    
                 }
             }
             return apartments;

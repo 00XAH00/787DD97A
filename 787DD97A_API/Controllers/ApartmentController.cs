@@ -92,8 +92,9 @@ namespace _787DD97A_API.Controllers
             for (int i = 0; i < flat.Length; i++)
             {
                 Apartments = _context.Apartments.Where(u => u.Rooms.Equals(flat[i].Rooms))
+                    .Where(u => u.Condition.Equals(flat[i].Condition))
                     .Where(u => u.Material.Equals(flat[i].Material));
-                flats = SortFlat.SortFlats(Apartments, flat[i]);
+                    flats = SortFlat.SortFlats(Apartments, flat[i]);
                 ExcelRW.SetFlats(i, "primer.xlsx", 
                     CalcPriceOfFlats.PriceOfFlat(
                         SortFlat.Convert(flat[i]), flats, flats.Length)); 

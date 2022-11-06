@@ -93,6 +93,7 @@ class avito():
             undeground_minutes = None
             undeground_name = None
             price = None
+            balcony = False
 
 
             # Получение информации о квартире
@@ -118,7 +119,7 @@ class avito():
                             apartment_floor = floor[0].lstrip()
                             house_floors = floor[1]
                         case "Балкон или лоджия":
-                            if (item.text.lower() == "балкон") or (item.text.lower() == "лоджия"): balcony = True
+                            if (item_split[1] == " балкон") or (item_split[1] == " лоджия"): balcony = True
                             else: balcony = False
                         case "Отделка" | "Ремонт":
                             if (item_split[1] == " чистовая") or (item_split[1] == " дизайнерский"): condition = "современная отделка"
@@ -127,7 +128,7 @@ class avito():
             except: continue
             if ((rooms is None) or (apatments_area is None) or (kitchen_area is None) or (apartment_floor is None) or (house_floors is None) or (condition is None)):
                 count_skiped_apartment += 1
-                # print(f"link {link}     rooms: {(rooms is None)}    apatments_area: {(apatments_area is None)}  kitchen_area: {(kitchen_area is None)}   apartment_floor: {(apartment_floor is None)}   house_floors: {(house_floors is None)}    condition:{(condition is None)}")
+                print(f"link {link}     rooms: {(rooms is None)}    apatments_area: {(apatments_area is None)}  kitchen_area: {(kitchen_area is None)}   apartment_floor: {(apartment_floor is None)}   house_floors: {(house_floors is None)}    condition:{(condition is None)}")
                 continue
 
             # Получение информации о доме
@@ -178,7 +179,7 @@ class avito():
             except: continue
             if ((address is None) or (undeground_name is None) or (undeground_minutes is None)):
                 count_skiped_apartment += 1
-                # print(f"skip because: adress: {(address is None)}     undeground_name: {(undeground_name is None)}     undeground_minutes: {(undeground_minutes is None)}")
+                print(f"skip because: adress: {(address is None)}     undeground_name: {(undeground_name is None)}     undeground_minutes: {(undeground_minutes is None)}")
                 continue
 
             # Получение стоимости квартиры

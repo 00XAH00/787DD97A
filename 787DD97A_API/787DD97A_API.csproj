@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>_787DD97A_API</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>50e3cab2-dafe-4f93-a26f-86ef75d2fb19</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

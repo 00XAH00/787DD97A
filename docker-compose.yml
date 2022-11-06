@@ -2,7 +2,50 @@ version: '3.4'
 
 services:
   787dd97a_api:
+    container_name: 787dd97a_API
     image: ${DOCKER_REGISTRY-}787dd97aapi
     build:
       context: .
       dockerfile: 787DD97A_API/Dockerfile
+    ports:
+    #  - "445:443"
+      - "446:80"
+    networks:
+      - 787dd97a_local
+    volumes:
+       - ~/.aspnet/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
+
+  787dd97a_db:
+    container_name: 787dd97a_DB
+    image: mysql/mysql-server
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=X84ertoanDrWQQtSSJOWI0mnVz1aswwgPlyHZeKS
+      - MYSQL_PASSWORD=Qpdfn48FtrUHap13I0bCk4YFmg2VL9PwLEmf3hqG
+      - MYSQL_DATABASE=787dd97a
+      - MYSQL_USER=787dd97a_user
+    networks:
+      - 787dd97a_local
+    volumes: 
+      - db:/var/lib/mysql
+
+  787dd97a_pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: 787dd97a_pma
+    environment:
+      PMA_HOST: 787dd97a_db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      # PMA_ABSOLUTE_URI: 'https://pma.xah.duckdns.org'
+    ports:
+      - "3305:80"
+    networks:
+      - 787dd97a_local
+    restart: always
+
+volumes:
+  db:
+
+networks:
+  787dd97a_local:

@@ -27,6 +27,8 @@ services:
       - MYSQL_USER=787dd97a_user
     networks:
       - 787dd97a_local
+    prots:
+      - "469:3306"
     volumes: 
       - db:/var/lib/mysql
 

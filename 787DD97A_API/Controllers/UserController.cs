@@ -62,7 +62,66 @@ namespace _787DD97A_API.Controllers
             return Unauthorized("password isn't correct");
         }
 
+        [HttpPost("Login")]
+        public ActionResult<string> UserLogin([FromBody] UserLoginModel user_auth)
+        {
+            var user = _context.Users
+                .Where(u => u.Email.Equals(user_auth.Username))
+                .Include(ua => ua.UsersDevices)
+                .FirstOrDefault();
 
+            if (user_auth.DeviceId == "") { return BadRequest("DeviceId empty"); }
+            if (!ValidatePassword(user_auth.Password, user)) { return Unauthorized("Password isn't correct"); }
+
+
+            string token = _jwt.GenJWT(user.Email, 0);
+            var refreshToken = GenerateRefreshToken();
+            SetRefreshToken(refreshToken);
+
+
+            var Device = user.UsersDevices.Where(u => u.DeviceId == user_auth.DeviceId).FirstOrDefault();
+            if (Device is null)
+            {
+                UserDevice device = new UserDevice { TokenCreate = refreshToken.Created, TokenExpire = refreshToken.Expires, RefreshToken = refreshToken.Token, DeviceId = user_auth.DeviceId };
+                user.UsersDevices.Add(device);
+            }
+            else
+            {
+                Device.RefreshToken = refreshToken.Token;
+                Device.TokenCreate = refreshToken.Created;
+                Device.TokenExpire = refreshToken.Expires;
+            }
+            _context.SaveChanges();
+            return Ok(token);
+
+        }
+
+        
+
+
+
+        [NonAction]
+        private RefreshTokenModel GenerateRefreshToken()
+        {
+            var refreshToken = new RefreshTokenModel
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddYears(1),
+                Created = DateTime.Now
+            };
+
+            return refreshToken;
+        }
+        [NonAction]
+        private void SetRefreshToken(RefreshTokenModel newRefreshToken)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires
+            };
+            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+        }
         [NonAction]
         public bool ValidatePassword(string password, User user)
         {

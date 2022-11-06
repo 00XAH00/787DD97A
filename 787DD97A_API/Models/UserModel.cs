@@ -12,7 +12,7 @@ namespace _787DD97A_API.Models
         public string? FirstName { get; set; }
         [MaxLength(30)]
         public string? SecondName { get; set; }
-        [MaxLength(17)]
+        [MaxLength(255)]
         public string? Email { get; set; }
         [MaxLength(255)]
         public string? Password { get; set; }

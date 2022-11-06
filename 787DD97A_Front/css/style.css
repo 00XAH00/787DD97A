@@ -599,7 +599,7 @@ hr {
 @media (max-width: 900px) {
   .form__box-inner{
     flex-wrap: wrap;
-    gap: 80px;
+    gap: 10px;
     justify-content: center;
   }
 
@@ -641,7 +641,7 @@ hr {
 
 @media (max-width: 600px) {
   .logotip{
-    width: 400px;
+    width: 410px;
     height: 60px;
   }
 
@@ -654,7 +654,7 @@ hr {
   }
 
   .footer__symbol{
-    width: 230px;
+    width: 250px;
   }
 }
 
@@ -683,7 +683,7 @@ hr {
 
 @media (max-width: 500px) {
   .logotip{
-    width: 350px;
+    width: 300px;
   }
 
   .form__location label,
@@ -703,8 +703,9 @@ hr {
   }
 
   .logotip{
-    width: 240px;
-    height: 40px;
+    margin-top: 20px;
+    width: 230px;
+    height: 30px;
   }
 
   .header-btn{

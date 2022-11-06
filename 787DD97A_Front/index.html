@@ -1,342 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Лидеры цифровой информации</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:400,700&display=swap&subset=cyrillic" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-  </head>
-  <body>
-    <header class="header">
-      <div class="container">
-        <div class="header-top">
-          <div class="logo">
-            <a href="#">
-              <span class="logotip"></span>
-            </a>
-          </div>
-          <div class="header-btn" id="menu_btn">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лидеры цифровой информации</title>
+  <link rel="icon" href="./images/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:400,700&display=swap&subset=cyrillic"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-top">
+        <div class="logo">
+          <a href="#">
+            <span class="logotip"></span>
+          </a>
+        </div>
+        <div class="header-btn" id="menu_btn">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
       </div>
+    </div>
 
-      <hr color="#53B374">
+    <hr color="#53B374">
 
-      <nav class="menu" id="menu">
-        <div class="container container-menu">
-          <div class="close-btn" id="close_menu_btn"></div>
-          <div class="menu__list">
-            <ul>
-              <li><a href="#">Главная</a></li>
-              <li><a href="#">Личный кабинет</a></li>
-              <li><a href="#">Калькулятор</a></li>
-            </ul>
-          </div>
+    <nav class="menu" id="menu">
+      <div class="container container-menu">
+        <div class="close-btn" id="close_menu_btn"></div>
+        <div class="menu__list">
+          <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Личный кабинет</a></li>
+            <li><a href="#">Калькулятор</a></li>
+          </ul>
         </div>
-      </nav>
-    </header>
-    <section class="calculator">
-      <div class="form" id="header-content">
-        <div class="container">
-          <div class="form__inner">
-            <div class="form__content">
-              <div class="form__title-box">
-                <div class="form__title">
-                  Рассчитайте стоимость квартиры
-                </div>
-                <div class="form__text">
-                  Калькулятор поможет подобрать оптимальную цену
-                </div>
+      </div>
+    </nav>
+  </header>
+  <section class="calculator">
+    <a name="calculator"></a>
+    <div class="form" id="header-content">
+      <div class="container">
+        <div class="form__inner">
+          <div class="form__content">
+            <div class="form__title-box">
+              <div class="form__title">
+                Рассчитайте стоимость квартиры
               </div>
-              <div class="form__box">
-                <form>
-                  <div class="form__box-inner">
-                    <div class="form__box-left">
-                      <div class="form__location">
-                        <label for="location">Местоположение</label>
-                        <input class="form__input" id="location" type="text" placeholder="Гагаринский">
-                      </div>
-                      <div class="form__segment">
-                        <p>Сегмент</p>
-                        <button type="button" class="form__box-btn segment-btn active">Современное жилье</button>
-                        <button type="button" class="form__box-btn segment-btn">Новостройка</button>
-                        <button type="button" class="form__box-btn segment-btn">Старый жилой фонд</button>
-                      </div>
-                      <h3 class="slider__title">Количество комнат</h3>
-                      <div class="slider__inputs">
-                        <div class="range">
-                          <div class="sliderValue">
-                              <span id="room-span" >8</span>
-                          </div>
-                          <div class="field">
-                              <div class="value left">1</div>
-                              <input type="range" min="1" max="15" value="8" step="1" id="room-input">
-                              <div class="value right">15</div>
-                          </div>
+              <div class="form__text">
+                Калькулятор поможет подобрать оптимальную цену
+              </div>
+            </div>
+            <div class="form__box">
+              <form>
+                <div class="form__box-inner">
+                  <div class="form__box-left">
+                    <div class="form__location">
+                      <label for="location">Местоположение</label>
+                      <input class="form__input" id="location" type="text" placeholder="Гагаринский">
+                    </div>
+                    <div class="form__segment">
+                      <p>Сегмент</p>
+                      <button type="button" class="form__box-btn segment-btn active">Современное жилье</button>
+                      <button type="button" class="form__box-btn segment-btn">Новостройка</button>
+                      <button type="button" class="form__box-btn segment-btn">Старый жилой фонд</button>
+                    </div>
+                    <h3 class="slider__title">Количество комнат</h3>
+                    <div class="slider__inputs">
+                      <div class="range">
+                        <div class="sliderValue">
+                          <span id="room-span">8</span>
                         </div>
-                      </div>
-                      <h3 class="slider__title">Этажность дома</h3>
-                      <div class="slider__inputs">
-                        <div class="range">
-                          <div class="sliderValue">
-                              <span id="floor-span">51</span>
-                          </div>
-                          <div class="field">
-                              <div class="value left">2</div>
-                              <input type="range" min="2" max="100" value="51" step="1" id="floor-input">
-                              <div class="value right">100</div>
-                          </div>
+                        <div class="field">
+                          <div class="value left">1</div>
+                          <input type="range" min="1" max="15" value="8" step="1" id="room-input">
+                          <div class="value right">15</div>
                         </div>
-                      </div>
-                      <div class="form__floor">
-                        <label for="floor">Нужный этаж</label>
-                        <input class="form__input" id="floor" type="text" min="0" max="100" placeholder="1">
-                      </div>
-                      <div class="form__walls">
-                        <p>Материал стен дома</p>
-                        <button class="form__box-btn walls-btn active" type="button">Кирпич</button>
-                        <button class="form__box-btn walls-btn" type="button">Монолит</button>
-                        <button class="form__box-btn walls-btn" type="button">Панель</button>
                       </div>
                     </div>
-                    <div class="form__box-right">
-                      <div class="form__distance">
-                        <label for="distance">Расстояние до метро(минуты)</label>
-                        <input class="form__input distance-input" id="distance" type="text" placeholder="5 минут">
-                      </div>
-                      <div class="form__finishing">
-                        <p>Состояние отделки</p>
-                        <button type="button" class="form__box-btn finishing-btn active">Без отделки</button>
-                        <button type="button" class="form__box-btn finishing-btn">Муниципальный ремонт</button>
-                        <button type="button" class="form__box-btn finishing-btn">Современный ремонт</button>
-                      </div>
-                      <h3 class="slider__title">Площадь квартиры</h3>
-                      <div class="slider__inputs">
-                        <div class="range">
-                          <div class="sliderValue">
-                              <span id="flat-span">70</span>
-                          </div>
-                          <div class="field">
-                              <div class="value left">10</div>
-                              <input type="range" min="10" max="130" value="70" step="1" id="flat-input">
-                              <div class="value right">130</div>
-                          </div>
+                    <h3 class="slider__title">Этажность дома</h3>
+                    <div class="slider__inputs">
+                      <div class="range">
+                        <div class="sliderValue">
+                          <span id="floor-span">51</span>
+                        </div>
+                        <div class="field">
+                          <div class="value left">2</div>
+                          <input type="range" min="2" max="100" value="51" step="1" id="floor-input">
+                          <div class="value right">100</div>
                         </div>
                       </div>
-                      <h3 class="slider__title">Площадь кухни</h3>
-                      <div class="slider__inputs">
-                        <div class="range">
-                          <div class="sliderValue">
-                              <span id="kitchen-span">8</span>
-                          </div>
-                          <div class="field">
-                              <div class="value left">2</div>
-                              <input type="range" min="2" max="15" value="8" step="1" id="kitchen-input">
-                              <div class="value right">15</div>
-                          </div>
+                    </div>
+                    <div class="form__floor">
+                      <label for="floor">Нужный этаж</label>
+                      <input class="form__input" id="floor" type="text" min="0" max="100" placeholder="1">
+                    </div>
+                    <div class="form__walls">
+                      <p>Материал стен дома</p>
+                      <button class="form__box-btn walls-btn active" type="button">Кирпич</button>
+                      <button class="form__box-btn walls-btn" type="button">Монолит</button>
+                      <button class="form__box-btn walls-btn" type="button">Панель</button>
+                    </div>
+                  </div>
+                  <div class="form__box-right">
+                    <div class="form__distance">
+                      <label for="distance">Расстояние до метро(минуты)</label>
+                      <input class="form__input distance-input" id="distance" type="text" placeholder="5 минут">
+                    </div>
+                    <div class="form__finishing">
+                      <p>Состояние отделки</p>
+                      <button type="button" class="form__box-btn finishing-btn active">Без отделки</button>
+                      <button type="button" class="form__box-btn finishing-btn">Муниципальный ремонт</button>
+                      <button type="button" class="form__box-btn finishing-btn">Современный ремонт</button>
+                    </div>
+                    <h3 class="slider__title">Площадь квартиры</h3>
+                    <div class="slider__inputs">
+                      <div class="range">
+                        <div class="sliderValue">
+                          <span id="flat-span">70</span>
+                        </div>
+                        <div class="field">
+                          <div class="value left">10</div>
+                          <input type="range" min="10" max="130" value="70" step="1" id="flat-input">
+                          <div class="value right">130</div>
                         </div>
                       </div>
-                      <div class="switch">
-                        <div class="switch__title">Наличие балкона/лоджии</div>
-                        <div class="switch__checkbox">
-                            <input type="checkbox">
+                    </div>
+                    <h3 class="slider__title">Площадь кухни</h3>
+                    <div class="slider__inputs">
+                      <div class="range">
+                        <div class="sliderValue">
+                          <span id="kitchen-span">8</span>
+                        </div>
+                        <div class="field">
+                          <div class="value left">2</div>
+                          <input type="range" min="2" max="15" value="8" step="1" id="kitchen-input">
+                          <div class="value right">15</div>
                         </div>
                       </div>
-                      <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" multiple>
-                        <label for="input__file" class="input__file-button">
-                           <span class="input__file-icon-wrapper"><img class="input__file-icon" src="images/add.svg" alt="Выбрать файл" width="25"></span>
-                           <span class="input__file-button-text">Выберите файл excel</span>
-                        </label>
+                    </div>
+                    <div class="switch">
+                      <div class="switch__title">Наличие балкона/лоджии</div>
+                      <div class="switch__checkbox">
+                        <input type="checkbox">
                       </div>
-                      <div class="right__buttons">
-                        <div class="right__buttons-top">
-                          <div class="right__btn">
-                            <button>Найти аналоги</button>
-                          </div>
-                          <div class="right__btn second__btn">
-                            <button>Скачать excel</button>
-                          </div>
+                    </div>
+                    <div class="input__wrapper">
+                      <input name="file" type="file" id="input__file" class="input input__file" multiple>
+                      <label for="input__file" class="input__file-button">
+                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="images/add.svg"
+                            alt="Выбрать файл" width="25"></span>
+                        <span class="input__file-button-text">Выберите файл excel</span>
+                      </label>
+                    </div>
+                    <div class="right__buttons">
+                      <div class="right__buttons-top">
+                        <div class="right__btn">
+                          <button>Найти аналоги</button>
                         </div>
-                        <div class="right__buttons-bottom">
-                          <div class="right__bth-result">
-                            <button>Рассчитать стоимость</button>
-                          </div>
+                        <div class="right__btn second__btn">
+                          <button>Скачать excel</button>
+                        </div>
+                      </div>
+                      <div class="right__buttons-bottom">
+                        <div class="right__bth-result">
+                          <button>Рассчитать стоимость</button>
                         </div>
                       </div>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <div class="table__responsive">
-      <div class="container mtb-3">
-          <table class="table" id="table">
-              <thead>
-                  <tr>
-                      <th>Адрес</th>
-                      <th>Метро</th>
-                      <th>Минуты</th>
-                      <th>Кол-во комнат</th>
-                      <th>Сегмент</th>
-                      <th>Кол-во этажей</th>
-                      <th>Материал</th>
-                      <th>Нужный этаж</th>
-                      <th>Площадь</th>
-                      <th>Площадь кухни</th>
-                      <th>Наличие балкона</th>
-                      <th>Состояние</th>
-                      <th>Удалить</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-                  <tr>
-                      <td>Очаковское</td>
-                      <td>Аминьевская</td>
-                      <td>8</td>
-                      <td>1</td>
-                      <td>Новостройка</td>
-                      <td>33</td>
-                      <td>Монолитный</td>
-                      <td>1</td>
-                      <td>34.2</td>
-                      <td>16.4</td>
-                      <td>Нет</td>
-                      <td>Без отделки</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+  <div class="table__responsive">
+    <div class="container mtb-3">
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Адрес</th>
+            <th>Метро</th>
+            <th>Минуты</th>
+            <th>Кол-во комнат</th>
+            <th>Сегмент</th>
+            <th>Кол-во этажей</th>
+            <th>Материал</th>
+            <th>Нужный этаж</th>
+            <th>Площадь</th>
+            <th>Площадь кухни</th>
+            <th>Наличие балкона</th>
+            <th>Состояние</th>
+            <th>Удалить</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+          <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <footer>
     <hr color="#53B374">
 
     <div class="footer__block">
-        <div class="footer__symbol">
-            <span class="material-symbols-outlined">
-                calculate
-            </span>
-            <p class="footer__title">Калькулятор</p>
-        </div>
+      <div class="footer__symbol">
+        <a href="#calculator">
+          <span class="material-symbols-outlined">
+            calculate
+          </span>
+          <p class="footer__title">Калькулятор</p>
+        </a>
+      </div>
 
-        <div class="vertical__line"></div>
+      <div class="vertical__line"></div>
 
-        <div class="footer__symbol">
-            <span class="material-symbols-outlined">
-                home
-            </span>
-            <p class="footer__title">Главная</p>
-        </div>
+      <div class="footer__symbol">
+        <span class="material-symbols-outlined">
+          home
+        </span>
+        <p class="footer__title">Главная</p>
+      </div>
 
-        <div class="vertical__line"></div>
+      <div class="vertical__line"></div>
 
-        <div class="footer__symbol">
-            <span class="material-symbols-outlined">
-                account_circle
-            </span>
-            <p class="footer__title">Личный кабинет</p>
-        </div>
+      <div class="footer__symbol">
+        <span class="material-symbols-outlined">
+          account_circle
+        </span>
+        <p class="footer__title">Личный кабинет</p>
+      </div>
     </div>
 
 
-</footer> 
-    <script src="js/main.js"></script>
-  </body>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+
 </html>

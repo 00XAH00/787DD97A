@@ -130,16 +130,16 @@ body{
 .form__title-box{ padding-bottom: 50px; }
 
 .form__title{
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
   line-height: 54px;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .form__text{
-  font-size: 30px;
-  line-height: 41px;
+  font-size: 20px;
+  line-height: 25px;
   color: #727D76;
 }
 
@@ -386,7 +386,7 @@ input:checked[type="checkbox"]::before{
   width: 100%;
   max-width: 290px;
   height: 60px;
-  background: #18e55e;
+  background: #53B374;
   color: #fff;
   font-size: 1.125rem;
   font-weight: 700;
@@ -528,22 +528,26 @@ hr {
   justify-content: center;
 }
 
+.footer__symbol{
+  text-align: center;
+}
+
 .footer__symbol .material-symbols-outlined {
   font-size: 90px;
   color: #53B374;
-  margin: 20px 50px 0px 50px;
 }
 
 .footer__title{
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
+  color: #000;
 }
 
 .vertical__line {
   border-left: 1px solid #53B374;
-  height: 300px;
-  margin: 20px 200px 0px 200px;
+  height: 180px;
+  margin: 20px 50px 40px 50px;
 }
 
 .material-symbols-outlined {
@@ -626,6 +630,10 @@ hr {
   .vertical__line {
       display: none;
   }
+
+  .footer__symbol{
+    margin: 0px 30px 20px 30px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -642,6 +650,9 @@ hr {
     font-size: 20px;
   }
 
+  .footer__symbol{
+    width: 230px;
+  }
 }
 
 @media (max-width: 550px) {
@@ -661,6 +672,9 @@ hr {
   .switch{
     flex-wrap: wrap;
   }
+
+  .footer__block{
+    margin: 0 auto;
 }
 
 @media (max-width: 500px) {
@@ -676,10 +690,14 @@ hr {
     .switch__title{
       font-size: 18px;
     }
-
 }
 
 @media (max-width: 450px) {
+  .form__title{
+    line-height: 30px;
+    margin-bottom: 10px;
+  }
+
   .logotip{
     width: 240px;
     height: 40px;
@@ -719,7 +737,17 @@ hr {
     .menu__list ul{
       width: 100%;
     } 
-}
+
+    .right__buttons-top{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .second__btn{
+      padding-left: 0px;
+    }
+  }
 
 @media (max-width: 360px) {
   .form__location .form__input,

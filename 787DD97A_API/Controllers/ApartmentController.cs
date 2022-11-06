@@ -23,17 +23,18 @@ namespace _787DD97A_API.Controllers
 
         // GET: api/values
         [HttpGet("Get")]
-        public IQueryable<Apartment> Test(string UndegroundName)
+        public IQueryable<Apartment> Test(Apartment UndegroundName)
         {
             var Apartments = _context.Apartments.Where(u => u.Undeground.Equals(UndegroundName));
 
-            foreach (Apartment u in Apartments)
+            while (Apartments == null)//если 
             {
-                Console.WriteLine($"{u.Id}.{u.Adress} - {u.Undeground} {u.Undeground_minutes}");
+                SortFlat.SortFlats(Apartments, UndegroundName);
+                Apartments = _context.Apartments.Where(u => u.Undeground.Equals(UndegroundName));
             }
             return Apartments;
         }
-
+        
         
     }
 }

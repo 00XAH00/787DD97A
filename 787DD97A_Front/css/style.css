@@ -448,11 +448,13 @@ input:checked[type="checkbox"]::before{
   border-collapse: collapse;
   font-size: 16px;
   line-height: 18px;
+  /* white-space: nowrap; */
 }
 
 .table th, .table td{
   text-align: center;
-  padding: 10px;
+  padding: 10px 7px 15px;
+  top: -5px;
 }
 
 .table th{

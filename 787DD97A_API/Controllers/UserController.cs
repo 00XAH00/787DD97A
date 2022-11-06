@@ -128,6 +128,36 @@ namespace _787DD97A_API.Controllers
 
         }
 
+        [HttpPost("RefreshToken")]
+        public ActionResult<string> RefreshToken([FromBody] TokenRefreshModel data)
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            var user = _context.Users
+                .Where(u => u.uuid.Equals(data.uuid))
+                .Include(ua => ua.UsersDevices)
+                .FirstOrDefault();
+            if (user is null) { return Unauthorized("Invalid user uuid."); }
+
+            var Device = user.UsersDevices.Where(u => u.DeviceId.Equals(data.DeviceId)).FirstOrDefault();
+
+            if (Device is null) { return Unauthorized("Invalid DeviceId."); }
+
+            if (!Device.RefreshToken.Equals(refreshToken)) { return Unauthorized("Invalid Refresh Token."); }
+            else if (Device.TokenExpire < DateTime.Now) { return Unauthorized("Token expired."); }
+
+            string token = _jwt.GenJWT(user.Email, 0);
+            var newRefreshToken = GenerateRefreshToken();
+            SetRefreshToken(newRefreshToken);
+
+            Device.RefreshToken = newRefreshToken.Token;
+            Device.TokenCreate = newRefreshToken.Created;
+            Device.TokenExpire = newRefreshToken.Expires;
+
+            _context.SaveChanges();
+
+            return Ok(token);
+        }
+
 
 
         [NonAction]

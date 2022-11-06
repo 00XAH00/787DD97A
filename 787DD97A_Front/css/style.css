@@ -550,7 +550,7 @@ hr {
 .vertical__line {
   border-left: 1px solid #53B374;
   height: 180px;
-  margin: 20px 50px 40px 50px;
+  margin: 20px 100px 40px 100px;
 }
 
 .material-symbols-outlined {
@@ -611,7 +611,7 @@ hr {
 
 @media (max-width: 790px) {
   .vertical__line {
-      margin: 20px 20px 0px 20px;
+      margin: 20px 50px 0px 50px;
   }
 }
 

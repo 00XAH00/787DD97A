@@ -12,6 +12,8 @@ services:
       - "446:80"
     networks:
       - 787dd97a_local
+    depends_on:
+      - 787dd97a_db
     volumes:
        - ~/.aspnet/DataProtection-Keys:/root/.aspnet/DataProtection-Keys
 
@@ -40,11 +42,25 @@ services:
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
       # PMA_ABSOLUTE_URI: 'https://pma.xah.duckdns.org'
+    depends_on:
+      - 787dd97a_db
     ports:
       - "3305:80"
     networks:
       - 787dd97a_local
     restart: always
+
+  web_server:
+    container_name: 787dd97a_web
+    image: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - 787dd97a_api
+    volumes:
+      - ./787DD97A_Front/nginx.conf:/etc/nginx/nginx.conf
+      - ./787DD97A_Front/mime.conf:/etc/nginx/mime.conf
+      - ./787DD97A_Front/:/root
 
 volumes:
   db:

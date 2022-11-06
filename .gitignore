@@ -404,3 +404,6 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# Vscode Settings
+.vscode

@@ -424,7 +424,7 @@ input:checked[type="checkbox"]::before{
 }
 
 .right__buttons button:hover{
-  background-color: #009231;
+  background-color: #53B374;
   color: #fff;
   transition: all .3s;
 }

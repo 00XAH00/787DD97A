@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
 *{ box-sizing: border-box; }
+
+body._lock {overflow: hidden;}
 
 a{
   color: #fff;
@@ -10,15 +13,16 @@ body{
   color: #000;
   font-size: 24px;
   line-height: 28px;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
 }
 
 .logotip{
-  background-image: url("../images/checklogotip.png");
+  background-image: url("../images/logotip.svg");
   display: inline-block;
-  width: 256px;
-  height: 256px;
+  width: 450px;
+  height: 60px;
+  margin-top: 15px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -46,7 +50,7 @@ body{
   width: 60px;
   height: 60px;
   border: 1px solid #000; 
-  margin-top: 31px; 
+  margin-top: 15px; 
   cursor: pointer; 
   display: flex; 
   flex-direction: column;
@@ -130,22 +134,22 @@ body{
 .form__title-box{ padding-bottom: 50px; }
 
 .form__title{
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
   line-height: 54px;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .form__text{
-  font-size: 30px;
-  line-height: 41px;
+  font-size: 20px;
+  line-height: 25px;
   color: #727D76;
 }
 
 .form__box-inner{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .form__box-left{
@@ -378,15 +382,17 @@ input:checked[type="checkbox"]::before{
 }
  
 .input__file-button-text {
+  text-align: center;
   line-height: 1;
   margin-top: 1px;
+  margin-right: 15px;
 }
  
 .input__file-button {
   width: 100%;
   max-width: 290px;
   height: 60px;
-  background: #18e55e;
+  background: #53B374;
   color: #fff;
   font-size: 1.125rem;
   font-weight: 700;
@@ -414,10 +420,11 @@ input:checked[type="checkbox"]::before{
   border: 1px solid #53B374;
   background-color: #fff;
   text-transform: uppercase;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .right__buttons button:hover{
-  background-color: #009231;
+  background-color: #53B374;
   color: #fff;
   transition: all .3s;
 }
@@ -518,6 +525,10 @@ tr.hidden {
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
 }
 
+.footer{
+  margin-top: 200px;
+}
+
 hr {
   margin-top: 20px;
 }
@@ -526,24 +537,29 @@ hr {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: auto;
+}
+
+.footer__symbol{
+  text-align: center;
 }
 
 .footer__symbol .material-symbols-outlined {
   font-size: 90px;
   color: #53B374;
-  margin: 20px 50px 0px 50px;
 }
 
 .footer__title{
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
+  color: #000;
 }
 
 .vertical__line {
   border-left: 1px solid #53B374;
-  height: 300px;
-  margin: 20px 200px 0px 200px;
+  height: 180px;
+  margin: 20px 100px 40px 100px;
 }
 
 .material-symbols-outlined {
@@ -560,9 +576,61 @@ hr {
   }
 }
 
+@media (max-width: 980px) {
+  .form__box-inner{
+    justify-content: center;
+  }
+
+  .form__location label,
+  .slider__title,
+  .form__segment p,
+  .form__distance label,
+  .form__finishing p,
+  .switch__title{
+    font-size: 18px;
+  }
+
+  .form__distance .form__input,
+  .form__location .form__input,
+  .form__floor .form__input {
+    max-width: 300px;
+  }
+
+  .form__finishing{
+    max-width: 350px;
+  }
+
+  .range{
+    width: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .form__box-inner{
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .form__box-right,
+  .form__box-left{
+    max-width: 400px;
+  }
+}
+
 @media (max-width: 790px) {
   .vertical__line {
-      margin: 20px 20px 0px 20px;
+      margin: 20px 50px 0px 50px;
+  }
+}
+
+@media (max-width: 700px) {
+  .form__title{
+    font-size: 30px;
+  }
+
+  .form__text{
+    font-size: 25px;
   }
 }
 
@@ -574,5 +642,142 @@ hr {
   .vertical__line {
       display: none;
   }
+
+  .footer__symbol{
+    margin: 0px 30px 20px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logotip{
+    width: 410px;
+    height: 60px;
+  }
+
+  .form__title{
+    font-size: 25px;
+  }
+
+  .form__text{
+    font-size: 20px;
+  }
+
+  .footer__symbol{
+    width: 250px;
+  }
+}
+
+@media (max-width: 550px) {
+  .form__box-inner{
+    gap: 10px;
+  }
+
+  .input__wrapper .input__file{
+    width: 160px;
+  }
+}
+
+@media (max-width: 500px) {
+  .logotip{
+    width: 340px;
+  }
+
+  .form__location label,
+    .slider__title,
+    .form__segment p,
+    .form__distance label,
+    .form__finishing p,
+    .switch__title{
+      font-size: 18px;
+    }
+}
+
+@media (max-width: 450px) {
+  .form__title{
+    line-height: 30px;
+    margin-bottom: 10px;
+  }
+
+  .logotip{
+    margin-top: 15px;
+    width: 270px;
+    height: 40px;
+  }
+
+  .header-btn{
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-btn div{
+    width: 30px;
+  }
+
+  .slider__inputs{
+    padding-left: 10px;
+  }
+
+  .form__distance{
+    max-width: 250px;}
+
+    .input__wrapper{
+      padding-right: 0px;
+    }
+
+    .input__wrapper .input__file{
+      width: 160px;
+    }
+
+    .menu__list a{
+      font-size: 30px;
+      line-height: 44px;
+      padding: 19px 10px 7px 0;
+      min-width: 100%
+    }
+
+    .menu__list ul{
+      width: 100%;
+    } 
+
+    .right__buttons-top{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .second__btn{
+      padding-left: 0px;
+    }
+  }
+
+@media (max-width: 360px) {
+  .logotip{
+    width: 240px;
+    height: 35px;
+    margin-top: 20px;
+  }
+
+  .switch{
+    display: block;
+  }
+
+  .form__location .form__input,
+  .form__floor .form__input,
+  .form__distance .form__input,
+  .form__box-right,
+  .switch,
+  .input__file-button{
+    max-width: 230px;
+  }
+
+  .range{
+    width: 220px;
+  }
+
+
+  .second__btn {
+    padding-left: 0px;
+  }
+
 }
 

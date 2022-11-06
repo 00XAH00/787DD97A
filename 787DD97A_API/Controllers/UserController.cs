@@ -96,7 +96,37 @@ namespace _787DD97A_API.Controllers
 
         }
 
-        
+        [HttpPost("Register")]
+        public ActionResult<User> UserRegister([FromBody] UserRegisterModel user_data)
+        {
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            try
+            {
+                User user = new User
+                {
+                    Email = user_data.email,
+                    FirstName = user_data.name,
+                    SecondName = user_data.surname,
+                    Password = Hash(user_data.password)
+                };
+
+                _context.Add(user);
+
+                _context.SaveChanges();
+                result.Add("ok", true);
+                return Ok(user);
+            }
+            catch (DbUpdateException e)
+            {
+                result.Add("ok", false);
+
+                if (e.InnerException.Message.Contains("Duplicate entry")) { result.Add("reason", "User already exists"); }
+                else { result.Add("reason", e.InnerException.Message); }
+
+                return BadRequest(result);
+            }
+
+        }
 
 
 

@@ -15,10 +15,11 @@ body{
 }
 
 .logotip{
-  background-image: url("../images/checklogotip.png");
+  background-image: url("../images/logotip.png");
   display: inline-block;
-  width: 256px;
-  height: 256px;
+  width: 450px;
+  height: 60px;
+  margin-top: 15px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -46,7 +47,7 @@ body{
   width: 60px;
   height: 60px;
   border: 1px solid #000; 
-  margin-top: 31px; 
+  margin-top: 15px; 
   cursor: pointer; 
   display: flex; 
   flex-direction: column;
@@ -65,7 +66,7 @@ body{
   position: absolute;
   background-color: #000;
   top: 0;
-  left: -100%;
+  left: -150%;
   width: 100%;
   transition: all .7s;
   z-index: 7;
@@ -145,7 +146,7 @@ body{
 
 .form__box-inner{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .form__box-left{
@@ -560,9 +561,61 @@ hr {
   }
 }
 
+@media (max-width: 980px) {
+  .form__box-inner{
+    justify-content: center;
+  }
+
+  .form__location label,
+  .slider__title,
+  .form__segment p,
+  .form__distance label,
+  .form__finishing p,
+  .switch__title{
+    font-size: 18px;
+  }
+
+  .form__distance .form__input,
+  .form__location .form__input,
+  .form__floor .form__input {
+    max-width: 300px;
+  }
+
+  .form__finishing{
+    max-width: 350px;
+  }
+
+  .range{
+    width: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .form__box-inner{
+    flex-wrap: wrap;
+    gap: 80px;
+    justify-content: center;
+  }
+
+  .form__box-right,
+  .form__box-left{
+    max-width: 400px;
+  }
+}
+
 @media (max-width: 790px) {
   .vertical__line {
       margin: 20px 20px 0px 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .form__title{
+    font-size: 30px;
+  }
+
+  .form__text{
+    font-size: 25px;
   }
 }
 
@@ -573,6 +626,98 @@ hr {
 
   .vertical__line {
       display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .logotip{
+    width: 400px;
+    height: 60px;
+  }
+
+  .form__title{
+    font-size: 25px;
+  }
+
+  .form__text{
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+
+  .range{
+    width: 300px;
+  }
+
+  .switch{
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .logotip{
+    width: 350px;
+  }
+
+  .form__location label,
+    .slider__title,
+    .form__segment p,
+    .form__distance label,
+    .form__finishing p,
+    .switch__title{
+      font-size: 18px;
+    }
+
+}
+
+@media (max-width: 450px) {
+  .logotip{
+    width: 240px;
+    height: 40px;
+  }
+
+  .header-btn{
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-btn div{
+    width: 30px;
+  }
+
+  .slider__inputs{
+    padding-left: 10px;
+  }
+
+  .form__distance{
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 360px) {
+  .form__location .form__input,
+  .form__floor .form__input,
+  .form__distance .form__input,
+  .form__box-right,
+  .switch,
+  .input__file-button{
+    max-width: 230px;
+  }
+
+  .right__buttons-top{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .second__btn {
+    padding-left: 0px;
+  }
+
+  .range{
+    width: 220px;
   }
 }
 

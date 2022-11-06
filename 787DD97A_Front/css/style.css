@@ -16,7 +16,7 @@ body{
 }
 
 .logotip{
-  background-image: url("../images/logotip.png");
+  background-image: url("../images/logotip.svg");
   display: inline-block;
   width: 450px;
   height: 60px;
@@ -683,7 +683,7 @@ hr {
 
 @media (max-width: 500px) {
   .logotip{
-    width: 300px;
+    width: 340px;
   }
 
   .form__location label,
@@ -703,9 +703,9 @@ hr {
   }
 
   .logotip{
-    margin-top: 20px;
-    width: 230px;
-    height: 30px;
+    margin-top: 15px;
+    width: 270px;
+    height: 40px;
   }
 
   .header-btn{
@@ -755,6 +755,12 @@ hr {
   }
 
 @media (max-width: 360px) {
+  .logotip{
+    width: 240px;
+    height: 35px;
+    margin-top: 20px;
+  }
+
   .form__location .form__input,
   .form__floor .form__input,
   .form__distance .form__input,

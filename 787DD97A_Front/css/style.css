@@ -2,6 +2,8 @@
 
 *{ box-sizing: border-box; }
 
+body._lock {overflow: hidden;}
+
 a{
   color: #fff;
   text-decoration:none;
@@ -380,8 +382,10 @@ input:checked[type="checkbox"]::before{
 }
  
 .input__file-button-text {
+  text-align: center;
   line-height: 1;
   margin-top: 1px;
+  margin-right: 15px;
 }
  
 .input__file-button {
@@ -667,23 +671,10 @@ hr {
   .form__box-inner{
     gap: 10px;
   }
-}
 
   .input__wrapper .input__file{
-    width: 200px;
+    width: 160px;
   }
-
-  .range{
-    margin-left: 20px;
-    width: 300px;
-  }
-
-  .switch{
-    flex-wrap: wrap;
-  }
-
-  .footer__block{
-    margin: 0 auto;
 }
 
 @media (max-width: 500px) {
@@ -764,6 +755,10 @@ hr {
     width: 240px;
     height: 35px;
     margin-top: 20px;
+  }
+
+  .switch{
+    display: block;
   }
 
   .form__location .form__input,

@@ -521,6 +521,10 @@ tr.hidden {
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
 }
 
+.footer{
+  margin-top: 200px;
+}
+
 hr {
   margin-top: 20px;
 }
@@ -529,6 +533,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: auto;
 }
 
 .footer__symbol{

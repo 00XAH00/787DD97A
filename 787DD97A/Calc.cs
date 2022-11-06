@@ -224,7 +224,7 @@ namespace CalcPriceOfFlat
             if (flats.KitchentArea < kitchenArea[0, 1]) j = 1;
             else if (flats.KitchentArea >= kitchenArea[0, 1] && flats.KitchentArea < kitchenArea[0, 2]) j = 2;
             else if (flats.KitchentArea >= kitchenArea[0, 2] && flats.KitchentArea < kitchenArea[0, 3]) j = 3;
-            else i = 3;
+            if (flats.KitchentArea > kitchenArea[0, 3]) j = 3;
             flats.Price += flats.Price / 100 * kitchenArea[i, j];
             flats.weightprocent += Math.Abs((float)kitchenArea[i, j]);
 
@@ -254,13 +254,13 @@ namespace CalcPriceOfFlat
             int i = -1;
             int j = -1;
 
-            if (flat.repair == "Без отделки" || flat.repair == "без отделки") i = 1;
-            else if (flat.repair == "Эконом" || flat.repair == "эконом" || flat.repair == "Муниципальный ремонт") i = 2;
-            else if (flat.repair == "Улучшенный" || flat.repair == "улучшенный" || flat.repair == "современная отделка") i = 3;
+            if (flat.repair == "Без отделки" || flat.repair == "без отделки") i = 0;
+            else if (flat.repair == "Эконом" || flat.repair == "эконом" || flat.repair == "Муниципальный ремонт") i = 1;
+            else if (flat.repair == "Улучшенный" || flat.repair == "улучшенный" || flat.repair == "современная отделка") i = 2;
 
-            if (flats.repair == "Без отделки" || flat.repair == "без отделки") j = 1;
-            else if (flats.repair == "Эконом" || flat.repair == "эконом" || flats.repair == "Муниципальный ремонт") j = 2;
-            else if (flats.repair == "Улучшенный" || flat.repair == "улучшенный" || flats.repair == "современная отделка") j = 3;
+            if (flats.repair == "Без отделки" || flats.repair == "без отделки") j = 0;
+            else if (flats.repair == "Эконом" || flats.repair == "эконом" || flats.repair == "Муниципальный ремонт") j = 1;
+            else if (flats.repair == "Улучшенный" || flats.repair == "улучшенный" || flats.repair == "современная отделка") j = 2;
 
             double priceLocal = FUNCm2(flats.ApartmentArea, flats.Price);
             flats.weightprocent += Math.Abs((float)repair[i, j] / (float)priceLocal) * 100f;

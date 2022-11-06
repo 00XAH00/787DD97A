@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using ClosedXML;
 using ClosedXML.Excel;
+
+using Microsoft.AspNetCore.Mvc;
+using _787DD97A_API.Classes;
+using _787DD97A_API.Models;
+
+using CalcForPriceFlat;
+using CalcPriceOfFlat;
+
 namespace CalcForPriceFlat
 {
     public class ExcelRW
     {
         //возвращает кварты из Excel файла namefile
-        public static Flat[] GetFlatsForExcel(string namefile)
+        public static Apartment[] GetFlatsForExcel(string namefile)
         {
             IXLWorkbook wb = new XLWorkbook(namefile);
 
@@ -32,35 +40,43 @@ namespace CalcForPriceFlat
             }
             count_flat--;//квартиры всегда получаются на 1 больше
 
-            Flat[] flat = new Flat[count_flat];
+            Apartment[] flat = new Apartment[count_flat];
             object value;
             for (int i = 0; i< count_flat; i++)
             {
-                flat[i] = new Flat();
+                flat[i] = new Apartment();
 
 
+                object Adress = ws.Cell(2 + i, 1).Value;
 
-                object numberOfStoryes = ws.Cell(2 + i, 4).Value;
+                flat[i].Adress = (string)Adress;
+
+
+                object Rooms = ws.Cell(2 + i, 2).Value;
+
+                flat[i].Rooms = Convert.ToUInt16(Rooms);
+
+                object House_floors = ws.Cell(2 + i, 4).Value;
                
-                flat[i].NumberOfStoreys = Convert.ToUInt16(numberOfStoryes);
+                flat[i].House_floors = Convert.ToUInt16(House_floors);
                 
                 
 
-                object FloorLocation = ws.Cell(2 + i, 6).Value;
+                object Apartment_floor = ws.Cell(2 + i, 6).Value;
                
-                flat[i].FloorLocation = Convert.ToUInt16(FloorLocation);
+                flat[i].Apartment_floor = Convert.ToUInt16(Apartment_floor);
 
 
 
-                object Area = ws.Cell(2 + i, 7).Value;
+                object Apatments_area = ws.Cell(2 + i, 7).Value;
 
-                flat[i].ApartmentArea = Convert.ToDouble(Area);
+                flat[i].Apatments_area = Convert.ToUInt16(Apatments_area);
 
 
 
-                object areaKitchen = ws.Cell(2 + i, 8).Value;
+                object Kitchen_area = ws.Cell(2 + i, 8).Value;
 
-                flat[i].KitchentArea = (ushort)(Convert.ToInt32(areaKitchen));
+                flat[i].Kitchen_area = (ushort)(Convert.ToInt32(Kitchen_area));
 
 
 
@@ -68,26 +84,28 @@ namespace CalcForPriceFlat
 
                 if (Balcon == "Да")
                 {
-                    flat[i].balcony = true;
+                    flat[i].Balcony = true;
                 }
                 else
                 {
-                    flat[i].balcony = false;
+                    flat[i].Balcony = false;
                 }
 
 
 
                 object distanceForMetro = ws.Cell(2 + i, 10).Value;
 
-                flat[i].DistanceFromMetroStation = (ushort)(Convert.ToInt32(distanceForMetro));
+                flat[i].Undeground_minutes = (ushort)(Convert.ToInt32(distanceForMetro));
 
 
 
 
                 object repair = ws.Cell(2 + i, 11).Value;
 
-                flat[i].repair = Convert.ToString(repair);
+                flat[i].Condition = Convert.ToString(repair);
 
+                flat[i].Undeground = "";
+                flat[i].Link = "";
             }
             
             

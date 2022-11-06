@@ -22,7 +22,17 @@ namespace CalcForPriceFlat
             this.Price = Price;
         }
 
-        
+        public Flats()
+        {
+            this.NumberOfStoreys = 0;
+            this.FloorLocation = 0;
+            this.ApartmentArea = 0;
+            this.KitchentArea = 0;
+            this.balcony = false;
+            this.DistanceFromMetroStation = 0;
+            this.repair = "";
+            this.Price = 0;
+        }
 
         /*Входные параметры (из БД)*/
         public ushort NumberOfStoreys { get; set; } = 0;           //формат ushort (0-32000)        

@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <!-- <base href="http://127.0.0.1:5500/"> -->
-    <base href="http://787dd97a.xahprod.ru">
+    <base href="http://127.0.0.1:5500/">
+    <!-- <base href="http://787dd97a.xahprod.ru"> -->
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
@@ -41,67 +41,56 @@
         </nav>
       </header>
 
-      
-      <!-- <form action="">
-        <div class="login__form">
-          <div class="form">
-            <div class="title">Авторизация</div>
-            <div>
-              <label for="email__input" class="login__lable" id="email">
-                <input class="login__input" type="email" id="email__input" required>
-                <span class="login__span">Email</span>
-              </label>
-            </div>
-            <label for="password__input" class="login__lable" id="password">
-              <input class="login__input" type="password" pattern="[0-9a-fA-F]{4,8}" id="password__input" required>
-              <span class="login__span">Password</span>
-            </label>
-            <button class="button" type="submit">Войти</button>
-            <a href="/html/registration.html">
-              <span class="registr__text">Если у вас нет аккаунта, нажмите сюда</span>
-            </a>
-          </div>
+      <div class="form">
+        <h1>Вход</h1>
+        <div class="input-form">
+          <input type="text" placeholder="Почта">
         </div>
-      </form> -->
+        <div class="input-form">
+          <input type="password" placeholder="Пароль">
+        </div>
+        <div class="input-form">
+          <input type="submit" value="Войти">
+        </div>
+        <a href="html/registration.html">Нет аккаунта? Нажмите сюда!</a>
+      </div>
 
-      <footer class="footer">
-        <hr color="#53B374">
-    
-        <div class="footer__block">
-          <div class="footer__symbol">
-            <a href="#calculator">
-              <span class="material-symbols-outlined">
-                calculate
-              </span>
-              <p class="footer__title">Калькулятор</p>
-            </a>
+        <footer class="footer">
+          <hr color="#53B374">
+      
+          <div class="footer__block">
+            <div class="footer__symbol">
+              <a href="#calculator">
+                <span class="material-symbols-outlined">
+                  calculate
+                </span>
+                <p class="footer__title">Калькулятор</p>
+              </a>
+            </div>
+      
+            <div class="vertical__line"></div>
+      
+            <div class="footer__symbol">
+              <a href="/index.html">
+                <span class="material-symbols-outlined">
+                  home
+                </span>
+                <p class="footer__title">Главная</p>
+              </a>
+            </div>
+      
+            <div class="vertical__line"></div>
+      
+            <div class="footer__symbol">
+              <a href="#">
+                <span class="material-symbols-outlined">
+                  account_circle
+                </span>
+                <p class="footer__title">Личный кабинет</p>
+              </a>
+            </div>
           </div>
-    
-          <div class="vertical__line"></div>
-    
-          <div class="footer__symbol">
-            <a href="/index.html">
-              <span class="material-symbols-outlined">
-                home
-              </span>
-              <p class="footer__title">Главная</p>
-            </a>
-          </div>
-    
-          <div class="vertical__line"></div>
-    
-          <div class="footer__symbol">
-            <a href="#">
-              <span class="material-symbols-outlined">
-                account_circle
-              </span>
-              <p class="footer__title">Личный кабинет</p>
-            </a>
-          </div>
-        </div>
-    
-    
-      </footer>
+        </footer>
       <script src="/js/login.js"></script>
 </body>
 </html>

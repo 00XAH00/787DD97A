@@ -126,17 +126,58 @@ namespace _787DD97A_API.Classes
           
             return flats;
         }
+        public static Flat ConvertToFlat(FlatsGET ApartmentsArray)
+        {
+            Flat flats = new Flat();
+            flats.DistanceFromMetroStation = (ushort)ApartmentsArray.DistanceFromMetroStation;
+            flats.NumberOfStoreys = (ushort)ApartmentsArray.NumberOfStoreys;
+            flats.FloorLocation = (ushort)ApartmentsArray.FloorLocation;
+            flats.ApartmentArea = (ushort)ApartmentsArray.ApartmentArea;
+            flats.KitchentArea = (ushort)ApartmentsArray.KitchentArea;
+            flats.balcony = ApartmentsArray.balcony;
+            flats.repair = ApartmentsArray.repair;
+
+            return flats;
+        }
 
         public static Apartment Convert(Flat flats)
         {
-           Apartment apartment = new Apartment();
-           apartment.Undeground_minutes = flats.DistanceFromMetroStation;
-           apartment.House_floors = flats.NumberOfStoreys;
-           apartment.Apartment_floor = flats.FloorLocation;
-           apartment.Apatments_area = (uint)flats.ApartmentArea;
-           apartment.Kitchen_area = flats.KitchentArea;
-           apartment.Balcony = flats.balcony;
-           apartment.Condition = flats.repair;
+            Apartment apartment = new Apartment();
+            apartment.Undeground_minutes = flats.DistanceFromMetroStation;
+            apartment.House_floors = flats.NumberOfStoreys;
+            apartment.Apartment_floor = flats.FloorLocation;
+            apartment.Apatments_area = (uint)flats.ApartmentArea;
+            apartment.Kitchen_area = flats.KitchentArea;
+            apartment.Balcony = flats.balcony;
+            apartment.Condition = flats.repair;
+
+            return apartment;
+        }
+
+        public static Apartment Convert(Flats flats)
+        {
+            Apartment apartment = new Apartment();
+            apartment.Undeground_minutes = flats.DistanceFromMetroStation;
+            apartment.House_floors = flats.NumberOfStoreys;
+            apartment.Apartment_floor = flats.FloorLocation;
+            apartment.Apatments_area = (uint)flats.ApartmentArea;
+            apartment.Kitchen_area = flats.KitchentArea;
+            apartment.Balcony = flats.balcony;
+            apartment.Condition = flats.repair;
+
+            return apartment;
+        }
+
+        public static Apartment Convert(FlatsGET flats)
+        {
+            Apartment apartment = new Apartment();
+            apartment.Undeground_minutes = flats.DistanceFromMetroStation;
+            apartment.House_floors = flats.NumberOfStoreys;
+            apartment.Apartment_floor = flats.FloorLocation;
+            apartment.Apatments_area = (uint)flats.ApartmentArea;
+            apartment.Kitchen_area = flats.KitchentArea;
+            apartment.Balcony = flats.balcony;
+            apartment.Condition = flats.repair;
 
             return apartment;
         }

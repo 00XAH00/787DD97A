@@ -17,7 +17,7 @@ namespace _787DD97A_API.Controllers
         static Flats[] flats;
         static Apartment[] flat;
         IWebHostEnvironment _appEnvironment;
-
+        FlatsGET userFlat_local;
         /* Часть подключения к БД*/
         public ApartmentController(ApplicationContext context, IWebHostEnvironment appEnvironment)
         {
@@ -29,22 +29,22 @@ namespace _787DD97A_API.Controllers
         /*ДЛЯ КНОПКИ - НАЙТИ АНАЛОГИ*/
         // Post: api/values
         [HttpPost("analogs")]
-        public IQueryable<Apartment> Test(Apartment UndegroundName)
+        //IQueryable<Apartment>
+        public Flats[] Test(FlatsGET userFlat)
         {
-
-            Apartments = _context.Apartments.Where(u => u.Undeground.Equals(UndegroundName.Undeground))
-                                            .Where(u => u.Rooms.Equals(UndegroundName.Rooms));
-            flats = SortFlat.SortFlats(Apartments, UndegroundName);
-
-            return Apartments;
+            userFlat_local = userFlat;
+            Apartments = _context.Apartments.Where(u => u.Undeground.Equals(userFlat.Undeground))
+                                            .Where(u => u.Rooms.Equals(userFlat.Rooms));
+            flats = SortFlat.SortFlats(Apartments, SortFlat.Convert(userFlat));
+            return flats;
         }
 
         /*ДЛЯ КНОПКИ - Рассчитать стоимость*/
-        [HttpPost("CalcPrice")]
-        public double Test2(Flat UndegroundName)
+        [HttpPut("CalcPrice")]
+        public double Test2()
         {
             if (flats != null)
-                return CalcPriceOfFlats.PriceOfFlat(UndegroundName, flats, flats.Length);
+                return CalcPriceOfFlats.PriceOfFlat(SortFlat.ConvertToFlat(userFlat_local), flats, flats.Length);
             else return 0;
         }
 
@@ -81,7 +81,7 @@ namespace _787DD97A_API.Controllers
         /*ДЛЯ КНОПКИ - Скачать Excel*/
 
         // DELETE api/<ValuesController>/5
-        [HttpGet]
+        [HttpGet("GetFile")]
         public IActionResult GetFile()
         {
             flat = ExcelRW.GetFlatsForExcel("primer.xlsx");

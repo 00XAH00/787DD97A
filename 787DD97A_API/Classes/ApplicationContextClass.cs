@@ -10,7 +10,7 @@ namespace _787DD97A_API.Classes
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureCreated();
+           //Database.EnsureCreated();
         }
 
         public DbSet<UserDevice>? UserDevices { get; set; }

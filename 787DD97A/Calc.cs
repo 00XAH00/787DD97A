@@ -142,7 +142,9 @@ namespace CalcPriceOfFlat
         {
             for (int i = 0; i < size_massive; i++)
             {
+                if (flats[i]!= null)
                 CorrectPrice(flat, flats[i]);
+                
                 Console.WriteLine();
             }
             double localprice = 0;
@@ -224,7 +226,7 @@ namespace CalcPriceOfFlat
             if (flats.KitchentArea < kitchenArea[0, 1]) j = 1;
             else if (flats.KitchentArea >= kitchenArea[0, 1] && flats.KitchentArea < kitchenArea[0, 2]) j = 2;
             else if (flats.KitchentArea >= kitchenArea[0, 2] && flats.KitchentArea < kitchenArea[0, 3]) j = 3;
-            else i = 3;
+            else j = 3;
             flats.Price += flats.Price / 100 * kitchenArea[i, j];
             flats.weightprocent += Math.Abs((float)kitchenArea[i, j]);
 

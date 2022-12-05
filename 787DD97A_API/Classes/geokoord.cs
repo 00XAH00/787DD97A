@@ -25,7 +25,7 @@ public class georooords
 
         client.DefaultRequestHeaders.Accept.Clear();
 
-        var stringTask = client.GetStringAsync("https://geocode-maps.yandex.ru/1.x/?apikey=d3cee173-e72b-4354-85e3-130296ab306b&format=json&geocode=" + n);
+        var stringTask = client.GetStringAsync("https://geocode-maps.yandex.ru/1.x/?apikey=d3cee173-e72b-4354-85e3-130296ab306bformat=json&geocode=" + n);
 
         var msg = await stringTask;
         int j = 0; //позиция начала цифр

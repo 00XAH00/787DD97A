@@ -17,7 +17,7 @@ namespace _787DD97A_API.Controllers
         static Flats[] flats;
         static Apartment[] flat;
         IWebHostEnvironment _appEnvironment;
-        FlatsGET userFlat_local;
+        static FlatsGET userFlat_local;
         /* Часть подключения к БД*/
         public ApartmentController(ApplicationContext context, IWebHostEnvironment appEnvironment)
         {
@@ -30,13 +30,14 @@ namespace _787DD97A_API.Controllers
         // Post: api/values
         [HttpPost("analogs")]
         //IQueryable<Apartment>
-        public Flats[] Test(FlatsGET userFlat)
+        public IQueryable<Apartment> Test( FlatsGET userFlat)
         {
             userFlat_local = userFlat;
+            
             Apartments = _context.Apartments.Where(u => u.Undeground.Equals(userFlat.Undeground))
                                             .Where(u => u.Rooms.Equals(userFlat.Rooms));
             flats = SortFlat.SortFlats(Apartments, SortFlat.Convert(userFlat));
-            return flats;
+            return Apartments;
         }
 
         /*ДЛЯ КНОПКИ - Рассчитать стоимость*/
@@ -60,7 +61,7 @@ namespace _787DD97A_API.Controllers
         /*ДЛЯ КНОПКИ - Загрузить Excel*/
 
         // DELETE api/<ValuesController>/5
-        [HttpPost("{AddFile}")]
+        [HttpPost("AddFile")]
         public async Task<IActionResult> AddFile(IFormFile uploadedFile)
         {
             if (uploadedFile != null)

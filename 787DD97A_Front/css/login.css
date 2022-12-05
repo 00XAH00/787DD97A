@@ -249,79 +249,214 @@ hr {
       'opsz' 48
 }
 
+@media (max-width: 1387px) {
+  .vertical__line {
+    margin: 20px 50px 0px 50px;
+  }
+}
 
+@media (max-width: 980px) {
+  .form__box-inner {
+    justify-content: center;
+  }
 
-@media (max-width: 670px) {
-  .footer__symbol .material-symbols-outlined {
-      justify-content: center;
+  .form__location label,
+  .slider__title,
+  .form__segment p,
+  .form__distance label,
+  .form__finishing p,
+  .switch__title {
+    font-size: 18px;
+  }
+
+  .form__distance .form__input,
+  .form__location .form__input,
+  .form__floor .form__input {
+    max-width: 300px;
+  }
+
+  .form__finishing {
+    max-width: 350px;
+  }
+
+  .range {
+    width: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .form__box-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .form__box-right,
+  .form__box-left {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 790px) {
+  .footer__symbol {
+    margin: 0px 50px 50px 50px;
   }
 
   .vertical__line {
     display: none;
   }
 
-  .footer__symbol{
-    margin: 0px 30px 20px 30px;
+  .footer__block {
+    display: block;
+    margin: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .form__title {
+    font-size: 30px;
+  }
+
+  .form__text {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 670px) {
+  .footer__symbol .material-symbols-outlined {
+    justify-content: center;
   }
 }
 
 @media (max-width: 600px) {
-  .logotip{
+  .logotip {
     width: 410px;
     height: 60px;
   }
 
-  .footer__symbol{
-    width: 250px;
+  .form__title {
+    font-size: 25px;
+  }
+
+  .form__text {
+    font-size: 20px;
   }
 }
 
 @media (max-width: 550px) {
-  .footer__block{
-    margin: 0 auto;
+  .form__box-inner {
+    gap: 10px;
+  }
+
+  .input__wrapper .input__file {
+    width: 160px;
   }
 }
 
-
 @media (max-width: 500px) {
-  .logotip{
+  .logotip {
     width: 340px;
+  }
+
+  .form__location label,
+  .slider__title,
+  .form__segment p,
+  .form__distance label,
+  .form__finishing p,
+  .switch__title {
+    font-size: 18px;
   }
 }
 
 @media (max-width: 450px) {
-  .logotip{
+  .form__title {
+    line-height: 30px;
+    margin-bottom: 10px;
+  }
+
+  .logotip {
     margin-top: 15px;
     width: 270px;
     height: 40px;
   }
 
-  .header-btn{
+  .header-btn {
     width: 40px;
     height: 40px;
   }
 
-  .header-btn div{
+  .header-btn div {
     width: 30px;
-    margin: 3px 0;
   }
 
-    .menu__list a{
-      font-size: 30px;
-      line-height: 44px;
-      padding: 19px 10px 7px 0;
-      min-width: 100%
-    }
-
-    .menu__list ul{
-      width: 100%;
-    } 
+  .slider__inputs {
+    padding-left: 10px;
   }
+
+  .form__distance {
+    max-width: 250px;
+  }
+
+  .input__wrapper {
+    padding-right: 0px;
+  }
+
+  .input__wrapper .input__file {
+    width: 160px;
+  }
+
+  .menu__list a {
+    font-size: 30px;
+    line-height: 44px;
+    padding: 19px 10px 7px 0;
+    min-width: 100%
+  }
+
+  .menu__list ul {
+    width: 100%;
+  }
+
+  .right__buttons-top {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .second__btn {
+    padding-left: 0px;
+  }
+}
 
 @media (max-width: 360px) {
-  .logotip{
-    width: 230px;
+  .logotip {
+    width: 240px;
     height: 35px;
     margin-top: 20px;
+  }
+
+  .switch {
+    display: block;
+  }
+
+  .form__location .form__input,
+  .form__floor .form__input,
+  .form__distance .form__input,
+  .form__box-right,
+  .switch,
+  .input__file-button {
+    max-width: 230px;
+  }
+
+  .range {
+    width: 220px;
+  }
+
+
+  .second__btn {
+    padding-left: 0px;
+  }
+
+  .logotip {
+    width: 230px;
   }
 }

@@ -234,13 +234,6 @@ body._lock {overflow: hidden;}
     }
   }
   
-  @media (max-width: 550px) {
-    .footer__block{
-      margin: 0 auto;
-    }
-  }
-  
-  
   @media (max-width: 500px) {
     .logotip{
       width: 340px;

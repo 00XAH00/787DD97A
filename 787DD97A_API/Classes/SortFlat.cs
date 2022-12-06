@@ -107,10 +107,11 @@ namespace _787DD97A_API.Classes
             {
                 if (i != index)
                 {
-                    flats[i] = flat[j];
+                    flats[j] = flat[i];
                     j++;
                 }
             }
+
             return flats;
         }
 

@@ -140,10 +140,15 @@ namespace CalcPriceOfFlat
 
         static public double PriceOfFlat(Flat flat, Flats[] flats, int size_massive)                         //цена квартиры относительно другого массива квартир
         {
+            double[] price_flats = new double[size_massive];
             for (int i = 0; i < size_massive; i++)
             {
                 if (flats[i]!= null)
-                CorrectPrice(flat, flats[i]);
+                {
+                    price_flats[i] = flats[i].Price;
+                        CorrectPrice(flat, flats[i]);
+                }
+                
                 
                 Console.WriteLine();
             }
@@ -163,6 +168,14 @@ namespace CalcPriceOfFlat
                 }
                 flats[i].weightanalog = flats[i].weightanalog / local;//финальная формула - делим вес вычесляемого объекта на все остальные
                 finalprice += (flats[i].Price / flats[i].ApartmentArea) * flats[i].weightanalog;
+            }
+
+
+            for(int i = 0; i < flats.Length; i++)
+            {
+                flats[i].weightanalog = 0;
+                flats[i].weightprocent = 0;
+                flats[i].Price = price_flats[i];
             }
 
 

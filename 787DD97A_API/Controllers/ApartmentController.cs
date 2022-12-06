@@ -52,10 +52,11 @@ namespace _787DD97A_API.Controllers
         /*ДЛЯ КНОПКИ - удалить аналог*/
 
         // DELETE api/<ValuesController>/5
-        [HttpDelete("Delete {id} analog")]
+        [HttpDelete("id")]
         public Flats[] Delete(int id)
         {
-            return SortFlat.DeleteForIndexFlat(flats, id);
+            flats = SortFlat.DeleteForIndexFlat(flats, id);
+            return flats; 
         }
 
         /*ДЛЯ КНОПКИ - Загрузить Excel*/

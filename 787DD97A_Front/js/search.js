@@ -1,6 +1,6 @@
 let apartments_array
 
-function Getanalog() {
+function GetAnalog() {
     const adressValue = document.getElementById('location').value
     const houseFloorValue = document.getElementById('floor-input').value
     const apatmentFloorValue = document.getElementById('floor').value
@@ -153,6 +153,10 @@ function Getanalog() {
             else if (apartment["material"] === 2) material = "Кирпичный"
             else material = "Панельный"
 
+            let button_remove = document.createElement("button")
+            button_remove.title = "Remove"
+            button_remove.classList = apartment["id"]
+
             table_body.innerHTML +=
                 `<tr>
                 <td>${apartment["adress"]}</td>
@@ -167,12 +171,67 @@ function Getanalog() {
                 <td>${apartment["kitchen_area"]}</td>
                 <td>${balcony}</td>
                 <td>${apartment["condition"]}</td>
-                <td><button title="Remove"></button></td>
+                <td>${button_remove.outerHTML}</td>
                 </tr>`
-            console.log(apartment)
+            })
+
+        table.querySelector("tbody").addEventListener("click", function(e) {
+            if (e.target.nodeName == "BUTTON") {
+                let cell = e.target.parentNode;
+
+                const table_body = document.getElementById("body-table")
+                
+                for (let i = 0; i < apartments_array.length; i++) {
+                    if (apartments_array[i].id == e.target.classList[0]) {
+                        var formdata = new FormData();
+                
+                        var requestOptions = {
+                            method: 'DELETE',
+                            body: formdata,
+                            redirect: 'follow'
+                        };
+                        fetch(`https://backend.787dd97a.xahprod.ru/api/Apartment/id?id=${i+1}`, requestOptions)
+                        .then(response => response.text())
+                        .then(result => console.log(result))
+                        .catch(error => console.log('error', error));
+                    }
+                }
+
+                cell.parentNode.classList.add("hidden");
+                setTimeout(function() {
+                    cell.parentNode.remove()
+                    e.target.remove();
+                }, 1000)
+            }
         })
     })
     .catch(error => console.log('error', error));
 }
+function GetPrice() {
 
-document.getElementById('analog-btn').addEventListener('click', Getanalog)
+    var requestOptions = {
+        method: 'PUT',
+        headers: new Headers(),
+        body: new FormData(),
+        redirect: 'follow'
+    };
+
+    fetch("https://backend.787dd97a.xahprod.ru/api/Apartment/CalcPrice", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        const apartment_price = document.getElementById("apartment-price")
+        apartment_price.textContent = `Расчетная стоимость: ${Math.round(result)} ₽`
+        console.log(result)
+    })
+    .catch(error => console.log('error', error));
+}
+
+
+
+// let deleteButtons = document.getElementsByClassName('remove-btn')
+// deleteButtons.forEach(button => {
+//     button.addEventListener("click", deleteApartment)
+// })
+
+document.getElementById('analog-btn').addEventListener('click', GetAnalog)
+document.getElementById('calc-price-btn').addEventListener('click', GetPrice)

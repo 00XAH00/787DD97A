@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="form__box">
-              <form>
+              <div>
                 <div class="form__box-inner">
                   <div class="form__box-left">
                     <div class="form__location">
@@ -69,9 +69,9 @@
                     </div>
                     <div class="form__segment">
                       <p>Сегмент</p>
-                      <button type="button" class="form__box-btn segment-btn active">Современное жилье</button>
-                      <button type="button" class="form__box-btn segment-btn">Новостройка</button>
-                      <button type="button" class="form__box-btn segment-btn">Старый жилой фонд</button>
+                      <button type="button" class="form__box-btn segment-btn active" id="segment-btn-first">Современное жилье</button>
+                      <button type="button" class="form__box-btn segment-btn" id="segment-btn-second">Новостройка</button>
+                      <button type="button" class="form__box-btn segment-btn" id="segment-btn-third">Старый жилой фонд</button>
                     </div>
                     <h3 class="slider__title">Количество комнат</h3>
                     <div class="slider__inputs">
@@ -105,9 +105,13 @@
                     </div>
                     <div class="form__walls">
                       <p>Материал стен дома</p>
-                      <button class="form__box-btn walls-btn active" type="button">Кирпич</button>
-                      <button class="form__box-btn walls-btn" type="button">Монолит</button>
-                      <button class="form__box-btn walls-btn" type="button">Панель</button>
+                      <button id="material-btn-first" class="form__box-btn walls-btn active" type="button">Кирпич</button>
+                      <button id="material-btn-second" class="form__box-btn walls-btn" type="button">Монолит</button>
+                      <button id="material-btn-third" class="form__box-btn walls-btn" type="button">Панель</button>
+                    </div>
+                    <div class="form__distance">
+                      <label for="distance">Метро</label>
+                      <input class="form__input distance-input" id="underground" type="text" placeholder="Тананская">
                     </div>
                   </div>
                   <div class="form__box-right">
@@ -117,9 +121,9 @@
                     </div>
                     <div class="form__finishing">
                       <p>Состояние отделки</p>
-                      <button type="button" class="form__box-btn finishing-btn active">Без отделки</button>
-                      <button type="button" class="form__box-btn finishing-btn">Муниципальный ремонт</button>
-                      <button type="button" class="form__box-btn finishing-btn">Современный ремонт</button>
+                      <button type="button" id="repair-btn-first" class="form__box-btn finishing-btn active">Без отделки</button>
+                      <button type="button" id="repair-btn-second" class="form__box-btn finishing-btn">Муниципальный ремонт</button>
+                      <button type="button" id="repair-btn-third" class="form__box-btn finishing-btn">Современный ремонт</button>
                     </div>
                     <h3 class="slider__title">Площадь квартиры</h3>
                     <div class="slider__inputs">
@@ -150,7 +154,7 @@
                     <div class="switch">
                       <div class="switch__title">Наличие балкона/лоджии</div>
                       <div class="switch__checkbox">
-                        <input type="checkbox">
+                        <input type="checkbox" id="balcony-checkbox">
                       </div>
                     </div>
                     <div class="input__wrapper">
@@ -164,7 +168,7 @@
                     <div class="right__buttons">
                       <div class="right__buttons-top">
                         <div class="right__btn">
-                          <button>Найти аналоги</button>
+                          <button id="analog-btn">Найти аналоги</button>
                         </div>
                         <div class="right__btn second__btn">
                           <button>Скачать excel</button>
@@ -178,7 +182,7 @@
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -186,7 +190,7 @@
     </div>
   </section>
 
-  <div class="table__responsive">
+  <div class="table__responsive" id="apartments-table">
     <div class="container mtb-3">
       <table class="table" id="table">
         <thead>
@@ -198,7 +202,7 @@
             <th>Сегмент</th>
             <th>Кол-во этажей</th>
             <th>Материал</th>
-            <th>Нужный этаж</th>
+            <th>Этаж квартиры</th>
             <th>Площадь</th>
             <th>Площадь кухни</th>
             <th>Наличие балкона</th>
@@ -206,8 +210,22 @@
             <th>Удалить</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
+        <tbody id="body-table">
+          <!-- <tr>
+            <td>Очаковское</td>
+            <td>Аминьевская</td>
+            <td>8</td>
+            <td>1</td>
+            <td>Новостройка</td>
+            <td>33</td>
+            <td>Монолитный</td>
+            <td>1</td>
+            <td>34.2</td>
+            <td>16.4</td>
+            <td>Нет</td>
+            <td>Без отделки</td>
+          </tr> -->
+          <!-- <tr>
             <td>Очаковское</td>
             <td>Аминьевская</td>
             <td>8</td>
@@ -290,21 +308,7 @@
             <td>16.4</td>
             <td>Нет</td>
             <td>Без отделки</td>
-          </tr>
-          <tr>
-            <td>Очаковское</td>
-            <td>Аминьевская</td>
-            <td>8</td>
-            <td>1</td>
-            <td>Новостройка</td>
-            <td>33</td>
-            <td>Монолитный</td>
-            <td>1</td>
-            <td>34.2</td>
-            <td>16.4</td>
-            <td>Нет</td>
-            <td>Без отделки</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -348,7 +352,8 @@
 
 
   </footer>
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/search.js"></script>
 </body>
 
 </html>

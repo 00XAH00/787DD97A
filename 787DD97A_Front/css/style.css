@@ -375,6 +375,7 @@ input:checked[type="checkbox"]::before {
   margin: 15px 0;
   text-align: center;
   padding-right: 149px;
+  display: none;
 }
 
 .input__file {
@@ -434,6 +435,7 @@ input:checked[type="checkbox"]::before {
 
 .second__btn {
   padding-left: 8px;
+  display: none;
 }
 
 .right__buttons button {
@@ -546,6 +548,7 @@ tr.hidden {
 .table__responsive {
   overflow-x: auto;
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
+  display: none;
 }
 
 .footer {

@@ -205,6 +205,8 @@ body._lock {overflow: hidden;}
 
 .form a:hover{ color: #0fc3f5; }
 
+#error{ text-align: center;}
+
 .footer{
   margin-top: 80vh;
 }

@@ -44,23 +44,24 @@
       <div class="form">
         <h2>Регистрация</h2>
         <div class="input-form">
-          <input type="text" placeholder="Имя">
+          <input type="text" placeholder="Имя" id="user-name">
         </div>
         <div class="input-form">
-          <input type="text" placeholder="Фамилия">
+          <input type="text" placeholder="Фамилия" id="user-second-name">
         </div>
         <div class="input-form">
-          <input type="text" placeholder="Почта">
+          <input type="text" placeholder="Почта" id="user-email">
         </div>
         <div class="input-form">
-          <input type="password" placeholder="Пароль">
+          <input type="password" placeholder="Пароль" id="user-password">
         </div>
         <div class="input-form">
-          <input type="password" placeholder="Повторите пароль">
+          <input type="password" placeholder="Повторите пароль" id="user-password-repeat">
         </div>
         <div class="input-form">
-          <input type="submit" value="Войти">
+          <input type="submit" value="Войти" id="register-btn">
         </div>
+        <p id="error"></p>
       </div>
 
       <footer class="footer">
@@ -100,5 +101,6 @@
         </div>
       </footer>
       <script src="/js/login.js"></script>
+      <script src="/js/user_register.js"></script>
 </body>
 </html>

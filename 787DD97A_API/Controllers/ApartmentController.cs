@@ -37,7 +37,7 @@ namespace _787DD97A_API.Controllers
             Apartments = _context.Apartments.Where(u => u.Undeground.Equals(userFlat.Undeground))
                                             .Where(u => u.Rooms.Equals(userFlat.Rooms));
             flats = SortFlat.SortFlats(Apartments, SortFlat.Convert(userFlat));
-            return Apartments;
+            return SortFlat.Convert(flats);
         }
 
         /*ДЛЯ КНОПКИ - Рассчитать стоимость*/

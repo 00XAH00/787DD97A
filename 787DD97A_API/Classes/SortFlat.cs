@@ -185,6 +185,38 @@ namespace _787DD97A_API.Classes
             else return new Apartment();
         }
 
+        public static Apartment[] Converts(Flats[] flats)
+        {
+            Apartment[] apartment = new Apartment[flats.Length];
+            for (int i = 0; i < flats.Length; i++)
+            {
+                if (flats[i] != null)
+                {
+                    apartment[i] = new Apartment();
+                    apartment[i].Undeground_minutes = flats[i].DistanceFromMetroStation;
+                    apartment[i].House_floors = flats[i].NumberOfStoreys;
+                    apartment[i].Apartment_floor = flats[i].FloorLocation;
+                    apartment[i].Apatments_area = (uint)flats[i].ApartmentArea;
+                    apartment[i].Kitchen_area = flats[i].KitchentArea;
+                    apartment[i].Balcony = flats[i].balcony;
+                    apartment[i].Condition = flats[i].repair;
+
+                }
+            }
+            return apartment;
+        }
+
+        public static IQueryable<Apartment> Convert(Flats[] flats)
+        {
+
+            Apartment[] ap = new Apartment[flats.Length];
+            ap = Converts(flats);
+            IQueryable<Apartment> apartments = Queryable.AsQueryable(ap);
+            return apartments;
+           
+        }
+
+
         public static Apartment Convert(FlatsGET flats)
         {
             if (flats != null)

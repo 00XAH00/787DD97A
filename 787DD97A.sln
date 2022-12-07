@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1703.8
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcForPriceFlat", "787DD97A\CalcForPriceFlat.csproj", "{FB665B8E-5217-40CB-AE9D-220AB1EF0F17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalcForPriceFlat", "787DD97A\CalcForPriceFlat.csproj", "{FB665B8E-5217-40CB-AE9D-220AB1EF0F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "787DD97A_API", "787DD97A_API\787DD97A_API.csproj", "{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "787DD97A_API", "787DD97A_API\787DD97A_API.csproj", "{11825FF1-4722-4AD6-A7E6-25E2DA5EB41D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{34570907-E9FF-42D6-A3D6-7217C8554949}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{62912E9E-1388-45B0-B942-D561FB01AA11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_Calc", "..\Test_Calc\Test_Calc.csproj", "{FBF71199-39F1-4BCD-9C15-F50064D8279C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{62912E9E-1388-45B0-B942-D561FB01AA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62912E9E-1388-45B0-B942-D561FB01AA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62912E9E-1388-45B0-B942-D561FB01AA11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF71199-39F1-4BCD-9C15-F50064D8279C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF71199-39F1-4BCD-9C15-F50064D8279C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF71199-39F1-4BCD-9C15-F50064D8279C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF71199-39F1-4BCD-9C15-F50064D8279C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

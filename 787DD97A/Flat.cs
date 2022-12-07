@@ -8,20 +8,83 @@ namespace CalcForPriceFlat
 {
     public class Flat
     {
-        public Flat(ushort NumberOfStoreys, ushort FloorLocation, 
-            double ApartmentArea, ushort KitchentArea,bool balcony,
-            ushort DistanseFromMetroStation, string repair)
+
+        /*
+        public Flat(double NumberOfStoreys, double FloorLocation,
+            double ApartmentArea, double KitchentArea, bool balcony,
+            ushort DistanseFromMetroStation, string repair)*/
+        public Flat(double NumberOfStoreys_in, double FloorLocation_in,
+            double ApartmentArea_in, double KitchentArea_in, bool balcony,
+            double DistanseFromMetroStation_in, string repair_in)
         {
-            this.NumberOfStoreys = NumberOfStoreys;
-            this.FloorLocation = FloorLocation;
-            this.ApartmentArea = ApartmentArea;
-            this.KitchentArea = KitchentArea;
+            double NumberOfStoreys = NumberOfStoreys_in;
+
+            double FloorLocation = Convert.ToDouble(FloorLocation_in);
+
+            double ApartmentArea = Convert.ToDouble(ApartmentArea_in);
+
+            double KitchentArea = KitchentArea_in;
+
             this.balcony = balcony;
-            this.DistanceFromMetroStation = DistanseFromMetroStation;
-            this.repair = repair;
+
+            if (repair_in == "современная отделка" || repair_in == "Современная отделка" ||
+                repair_in == "Чистовая отделка" || repair_in == "чистовая отделка" ||
+                repair_in == "предчистовая отделка" || repair_in == "Предчистовая отделка" ||
+                repair_in == "Без отделки" || repair_in == "без отделки" ||
+                repair_in == "Эконом" || repair_in == "Эконом"
+                )
+            {
+                this.repair = repair_in;
+            }
+            else
+            {
+                Console.WriteLine("Значение введено не верно : Отделка. Отделка будет приравнено без отделки");
+                this.repair = "без отделки";
+            }
+
+            if (DistanseFromMetroStation_in < 0 || (DistanseFromMetroStation_in - Convert.ToDouble(Convert.ToInt32(DistanseFromMetroStation_in))) != 0)
+            {
+                this.DistanceFromMetroStation = (ushort)Math.Abs(DistanseFromMetroStation_in);
+                Console.WriteLine("Значение введено не верно : Время до метро меньше нуля. Время до метро будет рассчитано без знака -, и округлено");
+            }
+            else
+            {
+
+                this.DistanceFromMetroStation = Convert.ToUInt16(Math.Abs(DistanseFromMetroStation_in));
+            }
+
+
+
+            if (NumberOfStoreys < 0 || (NumberOfStoreys - Convert.ToDouble(Convert.ToInt32(NumberOfStoreys))) != 0)
+            {
+                Console.WriteLine("Значение введено не верно : Количество этажей. Количество этажей будет округлено");
+            }
+            else this.NumberOfStoreys = (ushort)NumberOfStoreys;
+
+            if (FloorLocation < 0 || (FloorLocation - Convert.ToDouble(Convert.ToInt32(FloorLocation))) != 0)
+            {
+                Console.WriteLine("Значение введено не верно : Этаж квартиры. Этаж квартиры будет округлено");
+
+            }
+            else this.FloorLocation = (ushort)FloorLocation;
+
+            if (ApartmentArea < 0)
+            {
+                this.ApartmentArea = Math.Abs(ApartmentArea);
+                Console.WriteLine("Значение введено не верно : Площадь квартиры. Площадь квартиры будет рассчитано без знака -");
+            }
+            else
+                this.ApartmentArea = ApartmentArea;
+
+            if (KitchentArea < 0 || (KitchentArea - Convert.ToDouble(Convert.ToInt32(KitchentArea))) != 0)
+            {
+                this.KitchentArea = (ushort)(KitchentArea);
+                Console.WriteLine("Значение введено не верно : Площадь кухни. Площадь кухни будет рассчитано без знака -");
+            }
+            else
+                this.KitchentArea = (ushort)(KitchentArea);
 
         }
-
         public Flat()
         {
             this.NumberOfStoreys = 0;
